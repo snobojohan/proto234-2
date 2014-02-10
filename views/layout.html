@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="/css/stylesheets/sass-bootstrap.css" rel="stylesheet" media="screen">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+  </head>
+  <body class="{{#if framer}}framer{{/if}} {{#unless framed}}not-framed{{/unless}}">
+  <!-- [ Framer: {{framer}} | Framed: {{framed}} | Title: {{title}} ] -->
+    {{#unless framed}}
+
+     <div class="container container--234">
+    	 <nav data-spy="affix" data-offset-top="32" class="svt234MainMenu hidden-xs">
+        <ul class="nav">
+          <li>Logo</li>
+          <li>
+              <a href="#" class="jsMainmenu-item jsLarger active">
+                <span class="fa fa-eye fa-2x"></span>
+                Titta
+              </a>
+          </li>
+          <li>
+            <a href="#" class="jsMainmenu-item jsSmaller">
+              <span class="fa fa-compass fa-2x"></span>
+              Upptäck
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="fa fa-search fa-2x"></span>
+              Hitta
+            </a>
+          </li>
+        </ul>
+      </nav>
+    {{/unless}}
+
+    	{{{body}}}
+
+    {{#unless framed}}
+      <footer class="footer">
+        <div class="row">
+          <div class="col-lg-12">
+
+            <p><a href="/newvideo">Add video</a></p>
+
+            <ul class="list-unstyled">
+              <li class="pull-right"><!--<a href="#top">Back to top</a>--></li>
+            </ul>
+
+
+          </div>
+        </div>
+
+      </footer>
+
+    </div>
+    {{/unless}}
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/js/libs/jquery.min.js"></script>
+    <script src="/js/libs/bootstrap.js"></script>
+    <script src="/js/libs/jquery.scrollTo-1.4.3.1.js"></script>
+    <script src="/js/libs/bootstrap.file-input.js"></script>
+    <script src="/js/libs/handlebars-v1.3.0.js"></script>
+
+    <script src="/js/script.js"></script>
+
+    <!--script src="//localhost:35729/livereload.js"></script-->
+
+    <!-- HBS Templates -->
+    <script id="playlist-item" type="text/x-handlebars-template">
+    {{{template_include "playlist_item.hbs"}}}
+    </script>
+    <script id="recommended-item" type="text/x-handlebars-template">
+    {{{template_include "recommended_item.hbs"}}}
+    </script>
+    <script id="video-item" type="text/x-handlebars-template">
+    {{{template_include "video_item.hbs"}}}
+    </script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+//// COMPASS DEFAULTS
+////////////////////////////////////////////////////////
+
+$carousel-indicator-border-color: #00F;
+$carousel-indicator-active-bg: $carousel-indicator-border-color;
+
+// Carousel
+// ------------------------
+
+$carousel-text-shadow:                        none;
+
+$carousel-control-color:                      #fff !default;
+$carousel-control-width:                      7%;
+$carousel-control-opacity:                    .5 !default;
+$carousel-control-font-size:                  20px !default;
+
+$carousel-indicator-active-bg:                #fff !default;
+$carousel-indicator-border-color:             #fff !default;
+
+$carousel-caption-color:                      #fff !default;
+
+$video-max-width:                      			1024px;
+
+
+// Border radius
+$default-border-radius: 2px;
+
+// box shadows
+$default-box-shadow-color: #333;
+$default-box-shadow-h-offset: 1px;
+$default-box-shadow-v-offset: 1px;
+$default-box-shadow-blur: 2px;
+$default-box-shadow-spread: false;
+$default-box-shadow-inset: false;
+
+//// BOOTSTRAP OVERWRITES
+////////////////////////////////////////////////////////
+
+$icon-font-path:          "../../fonts/";
+// $icon-font-name:       "glyphicons-halflings-regular";
+
+//// MY DEFAULTS
+////////////////////////////////////////////////////////
+
+$theme-color-box:	$gray-lighter;

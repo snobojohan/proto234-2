@@ -1,0 +1,106 @@
+<!--
+<form class="form-horizontal" role="form" method="post" action="/addvideo">
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Videonamn</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="videoname" name="videoname" placeholder="Videonamn">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Programtitel</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="programmetitle" name="programmetitle" placeholder="Programtitel">
+    </div>
+  </div>
+  
+  
+  <div class="form-group">
+     <label for="exampleInputFile" class="col-sm-2 control-label">File input</label>
+     <div class="col-sm-10">
+	     <input type="file" id="displayImage" name="displayImage">
+	     <p class="help-block">Välj en stor 16:9 bild</p>
+	 </div>
+   </div>
+  
+  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Skapa</button>
+    </div>
+  </div>
+</form>
+-->
+<hr>
+
+<h2>UPLOAD</h2>
+<form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" action="/addvideo">
+	<div class="form-group">
+	  	<label for="uniquename" class="col-sm-2 control-label">ID</label>
+	  	<div class="col-sm-10">
+			<input class="form-control" type="text" name="uniquename" placeholder="Unikt namn">
+		</div>
+	</div>
+	<div class="form-group">
+  		<label for="playid" class="col-sm-2 control-label">Playvideo</label>
+	  	<div class="col-sm-10">
+			<input class="form-control" type="text" name="playid" placeholder="Video ID i Play">
+		</div>
+	</div>
+	<div class="form-group">
+			<label for="programmetitle" class="col-sm-2 control-label">Program</label>
+	  	<div class="col-sm-10">	
+			<input class="form-control" type="text" name="programmetitle" placeholder="Programtitel">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="season" class="col-sm-2 control-label">Säsong</label>
+  		<div class="col-sm-10">	
+			<input class="form-control" type="text" name="season" placeholder="Säsongsnummer">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="episode" class="col-sm-2 control-label">Episodnummer</label>
+			<div class="col-sm-10">	
+			<input class="form-control" type="text" name="episode" placeholder="Episodnummer">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="episodetitle" class="col-sm-2 control-label">Avsnittsnamn</label>
+		<div class="col-sm-10">	
+			<input class="form-control" type="text" name="episodetitle" placeholder="Avsnittsnamn">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="length" class="col-sm-2 control-label">Längd</label>
+		<div class="col-sm-10">
+			<input class="form-control" type="text" name="length" placeholder="Längd">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="description" class="col-sm-2 control-label">Beskrivning</label>
+		<div class="col-sm-10">
+			<input class="form-control" type="text" name="description" placeholder="Beskrivning">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="recommended" class="col-sm-2 control-label">Rekommenderat</label>
+		<div class="col-sm-10">	
+	    	<input name="recommended" type="checkbox"> Visa endast i vi tror du gillar
+	    </div>
+	</div>
+	
+	<div class="form-group">
+		<label for="file" class="col-sm-2 control-label">Bild</label>
+		<div class="col-sm-10">	
+	    	<input class="file-inputs" type="file" name="file" title="Välj en bild att ladda upp">
+	    </div>
+	</div>
+	
+
+	<div class="form-group">
+	  <div class="col-sm-offset-2 col-sm-10">
+	    <input type="submit" class="btn btn-primary" value="Skapa">
+	  </div>
+	</div>
+</form>

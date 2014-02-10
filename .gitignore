@@ -1,0 +1,9 @@
+*.sassc
+.sass-cache
+.DS_Store
+.idea
+*.esproj
+public/css/OLD
+tmpfiles*
+node_modules
+*.iml
