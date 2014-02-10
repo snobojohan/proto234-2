@@ -13,57 +13,10 @@
     <![endif]-->
 
   </head>
-  <body class="{{#if framer}}framer{{/if}} {{#unless framed}}not-framed{{/unless}}">
-  <!-- [ Framer: {{framer}} | Framed: {{framed}} | Title: {{title}} ] -->
-    {{#unless framed}}
+  <body>
 
-     <div class="container container--234">
-    	 <nav data-spy="affix" data-offset-top="32" class="svt234MainMenu hidden-xs">
-        <ul class="nav">
-          <li>Logo</li>
-          <li>
-              <a href="#" class="jsMainmenu-item jsLarger active">
-                <span class="fa fa-eye fa-2x"></span>
-                Titta
-              </a>
-          </li>
-          <li>
-            <a href="#" class="jsMainmenu-item jsSmaller">
-              <span class="fa fa-compass fa-2x"></span>
-              Upptäck
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span class="fa fa-search fa-2x"></span>
-              Hitta
-            </a>
-          </li>
-        </ul>
-      </nav>
-    {{/unless}}
+    {{{body}}}
 
-    	{{{body}}}
-
-    {{#unless framed}}
-      <footer class="footer">
-        <div class="row">
-          <div class="col-lg-12">
-
-            <p><a href="/newvideo">Add video</a></p>
-
-            <ul class="list-unstyled">
-              <li class="pull-right"><!--<a href="#top">Back to top</a>--></li>
-            </ul>
-
-
-          </div>
-        </div>
-
-      </footer>
-
-    </div>
-    {{/unless}}
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="/js/libs/jquery.min.js"></script>
     <script src="/js/libs/bootstrap.js"></script>
@@ -84,6 +37,9 @@
     </script>
     <script id="video-item" type="text/x-handlebars-template">
     {{{template_include "video_item.hbs"}}}
+    </script>
+    <script id="video-iframe" type="text/x-handlebars-template">
+    {{{template_include "video_iframe.hbs"}}}
     </script>
   </body>
 </html>

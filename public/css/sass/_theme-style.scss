@@ -5,7 +5,7 @@
 
 body {
 	padding: 0; // 60px 0;
-	background-color: #dcdbd5;
+	background-color: #fff;
 }
 body.framer {
 	background-image: url("/img/bg-framer.png");
@@ -115,6 +115,52 @@ a.no-underline:hover {
 }
 */
 
+/* SPLASH */
+.svt234-Splash {
+
+	@include transition(opacity 0.3s ease-in-out);
+	@include opacity(1);
+
+	text-align: center;
+	margin: auto;
+	max-width: 50%;
+	height:50%;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+
+
+	.svt234-SplashHeader {
+		font-size: 7rem;
+	}
+
+	.svt234-SplashContext {
+		font-size: 30px;
+	}
+
+	.progress {
+		max-width: 280px;
+		height: 20px;
+		margin: 0 auto 40px;
+	}
+
+	.progress-bar {
+		@include transition-duration(3s);
+	}
+}
+
+/* MAIN VIDEO */
+.svt234-MainVideo {
+	@include transition(opacity 0.3s ease-in-out);
+	@include opacity(1);
+}
+
+.splashHide {
+	@include opacity(0);
+}
+
 
 // GRID
 %svt234Container {
@@ -127,7 +173,7 @@ a.no-underline:hover {
 }
 .svt234Content {
 	@include clearfix;
-	max-width: 1300px;
+	//max-width: 1300px;
 	margin: 0 auto;
 	overflow: visible;
 	.content-inner {
@@ -602,7 +648,7 @@ html {
 
 	}
 	.carousel-inner {
-		max-width: 90%;
+		//max-width: 90%;
 		margin: 0 auto;
 
 		overflow: visible;
@@ -613,7 +659,7 @@ html {
 		.carousel-inner__videomax {
 			cursor: pointer;
 			width:  100%;
-			max-width: $video-max-width;
+			//max-width: $video-max-width;
 			margin: 0 auto;
 			padding: 0;// $padding-large-vertical 0 35px 0;
 			// padding: $padding-large-vertical 0 35px 0;

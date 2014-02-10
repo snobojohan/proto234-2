@@ -3,13 +3,13 @@ var data = require('../model/index'),
 	fs = require('fs'),
   	gm = require('gm');
 
-exports.index = function (req, res) {    
+exports.index = function (req, res) {
 
 	console.log("index.js - routes");
 
 	// VIDEOS from database
 	data.getDbVideos(function(err,theData){
-		  
+
 		  	 	if (err){
 		  			console.log("ERROR : " + err);
 		  			// TODO: handle Error
@@ -17,29 +17,29 @@ exports.index = function (req, res) {
 		  	 		// console.log(theData);
 		  	 		res.render('index',theData);
 		  	 	}
-		  
-		  	});	
+
+		  	});
 
 };
 
 exports.framer = function (req, res) {
 
 	res.render('framer', { title: 'Framer', framer: 'true' } );
-	
+
 }
 exports.framed = function (req, res) {
 	// res.render('frame',{ title: 'Frame inner', framed: 'true' });
 
 	// VIDEOS from database
 	data.getDbVideos(function(err,theData){
-		  
+
 		  	 	if (err){
-		  			
+
 		  			console.log("ERROR : " + err);
 		  			// TODO: handle Error
 
 		  		} else {
-		  	 		
+
 		  	 		// console.log(theData);
 		  	 		theData.framed = 'true';
 
@@ -50,14 +50,14 @@ exports.framed = function (req, res) {
 		  	 		res.render('index',theData);
 
 		  	 	}
-		  
-		  	});	
+
+		  	});
 }
 
 exports.test = function (req, res) {
-		  
+
 		  data.getDbVideos(function(err,theData){
-		  
+
 		  	 	if (err){
 		  			console.log("ERROR : " + err);
 		  			// TODO: handle Error
@@ -65,10 +65,10 @@ exports.test = function (req, res) {
 		  	 		// console.log(theData);
 		  	 		res.render('test',theData);
 		  	 	}
-		  
-		  	});	
-		  
-	
+
+		  	});
+
+
 }
 
 exports.newvideo = function(req, res){
@@ -76,30 +76,30 @@ exports.newvideo = function(req, res){
 };
 
 exports.addvideo = function(req,res) {
-	
+
 	// console.log( req.body );
-	
-		
-			
+
+
+
 		var aBody = req.body;
 		var aName = aBody.uniquename.replace(/[^a-z0-9]/gi, '').toLowerCase(); // encodeURIComponent(aBody.uniquename).replace(/%20/g,'-');
-	
+
 	    var tempPath = req.files.file.path,
 	        targetPath = path.resolve('./public/uploads/' + aName + '.jpg');
-	        
+
 	    if (path.extname(req.files.file.name).toLowerCase() === '.jpg') {
-	        
+
 	        fs.rename(tempPath, targetPath, function(err) {
-	            
+
 	            if (err) {
 	            	console.log(err);
 	            	res.send("Something went wrong with the file uploading : read the console");
 	            } else {
-	            
+
 	            	console.log("Upload completed!");
-	            	
+
 	            	var sourcePath = targetPath;
-	            	
+
 	            	// resize and remove EXIF profile data
 	            	var lSize = {width: 988, height: 557};
 	            	var lTargetpath = './public/img/alts/large/' + aName + '.jpg';
@@ -109,14 +109,14 @@ exports.addvideo = function(req,res) {
 	            	.noProfile()
 	            	.write(lTargetpath, function (err) {
 	            	  if (err) {
-	            	  
+
 	            	  	console.log('Error', err);
-	            	  	
+
 	            	  } else {
 	            	  	console.log('Done resizing large');
 	            	  }
 	            	});
-	            	
+
 	            	var sSize = {width: 200, height: 200};
 	            	var sTargetpath = './public/img/alts/square/' + aName + '.jpg';
 	            	gm(sourcePath)
@@ -126,26 +126,26 @@ exports.addvideo = function(req,res) {
 	            	  .noProfile()
 	            	  .write(sTargetpath, function (err) {
 	            	    if (err) {
-	            	    	console.log('Error', err);   	
+	            	    	console.log('Error', err);
 	            	    } else {
 	            	    	console.log('Done resizing square');
 	            	    }
-	            	  });  	
-	            	
-	            	
+	            	  });
+
+
 	            	data.setVideo( req.body, aName );
-	            	
+
 	            	res.send("Färdigt! : " + aName);
-	            
+
 	            }
-	            
+
 	        });
 	    } else {
-	        fs.unlink(tempPath, function () {      	
-	        	console.error("Only .jpg files are allowed!");	           
-	            res.send("Det krävs en .jpg bild!"); 
+	        fs.unlink(tempPath, function () {
+	        	console.error("Only .jpg files are allowed!");
+	            res.send("Det krävs en .jpg bild!");
 	        });
 	    }
-	
- 	
+
+
 };

@@ -1,0 +1,148 @@
+<!-- Indicators -->
+
+<nav class="navbar navbar-default navbar--tabla" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+
+  <div class="svt234Content">
+    <div class="inner-header">
+
+      <ul class="nav navbar-nav tablachooser-mini visible-xs">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dagens tablå <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Tablå lördag</a></li>
+              <li><a href="#">Tablå söndag</a></li>
+              <li><a href="#">Tablå igår</a></li>
+              <li><a href="#">Tablå i morgon</a></li>
+              <li><a href="#">Tablå torsdag</a></li>
+              <li><a href="#">Tablå fredag</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Hitta program</a></li>
+            </ul>
+          </li>
+        </ul>
+        <!--
+      <div class="navbar-header visible-xs">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Välj datum <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Lördag 25 jan</a></li>
+              <li><a href="#">Söndag 26 jan</a></li>
+              <li><a href="#">Måndag 27 jan</a></li>
+              <li><a href="#">Tisdag 28 jan</a></li>
+              <li><a href="#">Onsdag 29 jan</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Hitta program</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      -->
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <!--<li class="heading">Tablå</li>-->
+          <li><a href="#">Lördag</a></li>
+          <li><a href="#">Söndag</a></li>
+          <li><a href="#">Igår</a></li>
+          <li class="active"><a href="#">Idag</a></li>
+          <li><a href="#">I morgon</a></li>
+          <li><a href="#">Torsdag</a></li>
+          <li><a href="#">Fredag</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Välj datum <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Lördag 25 jan</a></li>
+              <li><a href="#">Söndag 26 jan</a></li>
+              <li><a href="#">Måndag 27 jan</a></li>
+              <li><a href="#">Tisdag 28 jan</a></li>
+              <li><a href="#">Onsdag 29 jan</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Hitta program</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div>
+  </div>
+</nav>
+
+<div class="svt234Container" style="position: relative">
+
+
+    <div class="epg-arrows">
+      <a href="#" class="left jsScrollLeft"><i class="fa fa-angle-left fa-4x"></i></a>
+      <a href="#" class="right jsScrollRight"><i class="fa fa-angle-right fa-4x"></i></a>
+  </div>
+
+  <div id="epg" class="epg">
+
+  	<ol class="carousel-indicators epg__list">
+  	{{#each videos}}
+        {{> playlist_item }}
+  	{{/each}}
+  	</ol>
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+<div id="carousel-example-generic" class="carousel slide svt234Content" data-ride="carousel" data-interval="false">
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+
+        {{#each videos}}
+          {{> video_item }}
+        {{/each}}
+
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control hidden-xs" href="#carousel-example-generic" data-slide="prev">
+    	<!--div class="circle">
+        	<i>Se föregående</i> <span class="fa fa-arrow-left fa-2x"></span>&nbsp;&nbsp;
+        </div-->
+    </a>
+    <a class="right carousel-control hidden-xs" href="#carousel-example-generic" data-slide="next">
+        <!--div class="circle slideleft">
+        	&nbsp;&nbsp;<span class="fa fa-arrow-right fa-2x"></span> <i>Se nästa</i>
+        </div-->
+    </a>
+</div>
+
+<!-- VIEW: index.html -->
+
+<div class="svt234Container--Almostwhite">
+
+  <div class="svt234ContentBlock">
+    <div class="content-inner">
+      <h3 class="svt234-h3">Vi tror att du gillar</h3>
+
+
+      <div id="recommend-list" class="row">
+        {{#each recommendedvideos}}
+          {{> recommended_item }}
+        {{/each}}
+
+      </div>
+    </div>
+  </div>
+</div>
+<!--
+<div id="section-discover" class="svt234ContentBlock">
+  <div class="content-inner">
+    <h3 class="svt234-h3">Upptäck fler titlar</h3>
+    {{> discover_row }}
+  </div>
+</div>
+-->
+

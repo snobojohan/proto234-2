@@ -27,22 +27,7 @@ $.fn.closestToOffset = function(offset) {
     return el;
 };
 
-$('#carousel-example-generic').on('slid.bs.carousel', function () {
-    // nothing now
-});
-
 var $activeItem;
-
-var theIframe = function( anId, height){
-  var ret = "<div class=\"video-wrapper carousel-inner__videomax\"><iframe class=\"video-wrapper__object\" src=\"http:\/\/www.svtplay.se\/video\/"
-            + anId
-            + "\/?type=embed&position=0\" seamless frameborder=\"0\" scrolling=\"no\" allowfullscreen style=\"width:"
-            + "100%;"
-            + "height:"
-            + height
-            + "px;\"><\/iframe>";
-  return ret;
-}
 
 var centerScroller = function($item){
 
@@ -109,6 +94,7 @@ function playVideo($obj){
             var theItem = $obj.closest( ".item" );
             var theImage = theItem.find(".img-responsive--fill");
             var thePlaybutton = theItem.find(".playcenter");
+            var iframeTemplate = Handlebars.compile($("#video-iframe").html());
 
             var theId = theImage.data("playid");
 
@@ -123,91 +109,23 @@ function playVideo($obj){
             thePlaybutton.addClass("hider");
             theImage.before(
                 // We don't send width anymore, only height
-                theIframe( theId, dimensions.height )
+                iframeTemplate( {id: theId, height: dimensions.height })
 
             ).addClass("hider");
-
-            // wait
-            setTimeout(function() {
-
-              // DO ALL THE OTHER STUFF!!!
-              // theWrapper.removeAttr( "style" );
-            }, 500)
 
 }
 
 $(document).ready(function() {
 
-  $(".right.carousel-control").hover(
-
-    // var prev = $("#epg .active").prev();
-    // var next = $("#epg .active").next();
-
-
-    function() {
-      // $( this ).append( $( "<span> ***</span>" ) );
-      // $( this ).
-    }, function() {
-      // $( this ).find( "span:last" ).remove();
-    }
-
-  );
-
+  //SPLASH
+  SplashHandler.init($('.svt234-Splash'));
+  SplashHandler.show();
 
   //INIT RECOMMEND LIST
-  PlaylistHandler.init($("#epg"));
-  RecommendHandler.init($('#recommend-list'));
-  VideoCarouselHandler.init($('#carousel-example-generic'));
+  //PlaylistHandler.init($("#epg"));
+  //RecommendHandler.init($('#recommend-list'));
+  //VideoCarouselHandler.init($('#carousel-example-generic'));
 
-
-   $(".jsMainmenu-item").bind({
-
-        click: function(event) {
-
-            _self = $(this);
-
-
-            $(".jsMainmenu-item.active").removeClass('active');
-            console.log("removed");
-
-            _self.addClass( "active" );
-            console.log("added");
-            // event.preventDefault();
-        }
-
-    });
-
-  // test
-  if( $(".theiframe").length ){
-
-   $(".jsSmaller").bind({
-
-        click: function(event) {
-            console.log("CLICKED jsSmaller");
-            $(".theiframe").addClass( "theiframe--narrow" );
-
-            // wait
-            setTimeout(function() {
-              $(".discover-area").show();
-            }, 500)
-
-            event.preventDefault();
-        }
-
-    });
-
-    $(".jsLarger").bind({
-
-        click: function(event) {
-            $(".discover-area").hide();
-            console.log("CLICKED jsSmaller");
-            $(".theiframe").removeClass( "theiframe--narrow" );
-            event.preventDefault();
-        }
-
-
-    });
-  }
 
   // $(".video-wrapper").html( theIframe(1719847) );
   $(".jsPlayVideo").bind({
@@ -224,18 +142,16 @@ $(document).ready(function() {
 
     $activeItem = $("#epg .active");
 
-    centerScroller($activeItem);
+    //centerScroller($activeItem);
 
-    $( "#epg" ).on('click', '.epg__item', function() {
+    /*$( "#epg" ).on('click', '.epg__item', function() {
         $activeItem = $(this);
         centerScroller($activeItem);
-    });
+    });*/
 
-    console.log( "XXX program XXXXX :::: " + $("#carousel-example-generic .active").data("program") );
+    //$(".jsRelatedTitle").text( $("#carousel-example-generic .active").data("program") );
 
-    $(".jsRelatedTitle").text( $("#carousel-example-generic .active").data("program") );
-
-    $('#carousel-example-generic').on('slid.bs.carousel', function () {
+    /*$('#carousel-example-generic').on('slid.bs.carousel', function () {
 
         console.log("SLIDING");
 
@@ -251,10 +167,39 @@ $(document).ready(function() {
           playVideo( $(".item.active") );
 
       	}, 100);
-    });
+    });*/
 
 
 });
+
+var SplashHandler = {
+    TRANSITION_END : "webkitTransitionEnd transitionend oTransitionEnd otransitionend",
+    TRANSITION_START : "webkitTransitionStart transitionstart oTransitionStart otransitionstart",
+
+    init: function($container) {
+      this.$container = $container;
+      this.$progressbar = $container.find('.progress');
+      this.$progressbar.find('.progress-bar').css('width', '0');
+    },
+
+    show: function() {
+      var self = this;
+      console.log('this.$container', this.$container);
+      this.$container.removeClass("splashHide");
+      self.startLoader();
+    },
+    hide: function() {
+      this.$container.one(this.TRANSITION_END, function() {
+          $('.svt234-MainVideo').removeClass('splashHide');
+      }).addClass("splashHide");
+    },
+    startLoader: function() {
+      var self = this;
+      this.$progressbar.find('.progress-bar').one(this.TRANSITION_END, function() {
+        self.hide();
+      }).css('width', '100%');
+    }
+};
 
 var PlaylistHandler = {
      init: function($container) {
