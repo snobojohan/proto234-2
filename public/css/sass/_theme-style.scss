@@ -149,7 +149,10 @@ a.no-underline:hover {
 	}
 
 	.progress-bar {
-		@include transition-duration(3s);
+		@include transition-duration(2.5s);
+		-webkit-transition-timing-function: linear;
+		transition-timing-function: linear;
+
 		background-color: #ff7372;
 	}
 }
