@@ -58,7 +58,7 @@ var theScroller = function(direction){
 // debulked onresize handler
 function on_resize(c,t){onresize=function(){clearTimeout(t);t=setTimeout(c,200)};return c};
 
-on_resize(function() {
+/*on_resize(function() {
   console.log("RESIZED");
   if($activeItem){
   	centerScroller($activeItem);
@@ -85,14 +85,14 @@ on_resize(function() {
   	// console.log("Object was not an iFrame");
   }
 
-})(); // these parenthesis triggers this function on pageload
+})();*/ // these parenthesis triggers this function on pageload
 
 function playVideo($obj){
 
               // var dimensions = { "width": 800, "height": 400};
 
             var theItem = $obj.closest( ".item" );
-            var theImage = theItem.find(".img-responsive--fill");
+            var theImage = theItem.find(".jsPlayVideo");
             var thePlaybutton = theItem.find(".playcenter");
             var iframeTemplate = Handlebars.compile($("#video-iframe").html());
 
@@ -107,11 +107,10 @@ function playVideo($obj){
 
             // theWrapper.css( { "width": dimensions.width, "height": dimensions.height  } );
             thePlaybutton.addClass("hider");
-            theImage.before(
-                // We don't send width anymore, only height
-                iframeTemplate( {id: theId, height: dimensions.height })
+            var theIframeVideo = iframeTemplate( {id: theId, height: dimensions.height });
+            theItem.append(theIframeVideo).css('background-image', 'none');
 
-            ).addClass("hider");
+            theItem.fitVids({ customSelector: "iframe[src^='http://www.svtplay.se']"});
 
 }
 
@@ -184,7 +183,6 @@ var SplashHandler = {
 
     show: function() {
       var self = this;
-      console.log('this.$container', this.$container);
       this.$container.removeClass("splashHide");
       self.startLoader();
     },
@@ -200,6 +198,8 @@ var SplashHandler = {
       }).css('width', '100%');
     }
 };
+
+
 
 var PlaylistHandler = {
      init: function($container) {
