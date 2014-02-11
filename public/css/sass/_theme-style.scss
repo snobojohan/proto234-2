@@ -190,6 +190,34 @@ a.no-underline:hover {
 	}
 }
 
+.svt234-VideoInfo {
+	position: absolute;
+	z-index: 100;
+	left: 35px;
+	top: 35px;
+
+	h4 {
+		color: #fff;
+		font-size: 6rem;
+		font-weight: 100;
+		margin-top: 0;
+		margin-bottom: 3px;
+	}
+
+	.title {
+		color: #fff;
+		font-weight: 100;
+		font-style: italic;
+	}
+
+	.se-more {
+		display: block;
+		color: #fff;
+		margin: 10px 0 0;
+		text-decoration: underline;
+	}
+}
+
 .respFill {
 	position: absolute;
 	min-width: 100%;
