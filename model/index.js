@@ -168,6 +168,7 @@ exports.setVideo = function( aBody, aUniqueName ) {
 	  db.on('load', function() {
 	    db.set(aUniqueName, {
 	    	playid: aPlayId,
+        startoffset: aBody.startoffset,
 	    	programmetitle: aBody.programmetitle,
 	    	season: aBody.season,
 	    	episode: aBody.episode,

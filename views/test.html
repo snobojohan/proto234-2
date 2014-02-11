@@ -2,7 +2,17 @@
 
 <div class="video-wrapper">
                     
+ <div id="epg" class="epg">
 
+    <ol class="carousel-indicators epg__list">
+    {{#each videos}}
+        {{> playlist_item }}
+    {{/each}}
+    </ol>
+
+
+
+  </div>
                 
                    
 </div>
@@ -13,17 +23,16 @@
 	{{#each liked-videos}}
 	
 	{{/each}}
-
   
 {{#each videos}}
 <div class="col-xs-12 col-sm-4">
 	<div class="media">
-	  <a class="pull-left max-xs" href="#">
+	  <a class="pull-left max-xs" href="http://www.svtplay.se/video/{{playid}}/?type=embed&position={{startoffset}}">
 	    <img class="media-object img-responsive" src="/img/alts/square/{{uniqueid}}.jpg" alt="...">
 	  </a>
 	  <div class="media-body">
 	    <h4 class="media-heading">{{programmetitle}}</h4>
-	    ...
+	    ... startoffset [ {{startoffset}} ]
 	  </div>
 	</div>
 </div>
