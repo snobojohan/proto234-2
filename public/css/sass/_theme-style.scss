@@ -190,9 +190,47 @@ a.no-underline:hover {
 	}
 }
 
-.svt234-VideoInfo {
+.svt234-Overlay {
 	position: absolute;
 	z-index: 100;
+}
+
+.svt234-VideoLogo {
+	right: 35px;
+	top: 35px;
+}
+
+.svt234-VideoControlls {
+	top: 50%;
+	right: 0;
+	margin-top: -80px;
+
+	%A_svt234-Controll {
+		width: 80px;
+		height: 80px;
+		background-color: #2d2d2d;
+		display: block;
+		overflow: hidden;
+		margin-bottom: 2px;
+	}
+
+	.video-close {
+		@extend %A_svt234-Controll;
+		background-image: url('/img/video-ctrl-close.png');
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+
+	.video-next {
+		@extend %A_svt234-Controll;
+		background-image: url('/img/video-ctrl-play.png');
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+}
+
+.svt234-VideoInfo {
+
 	left: 35px;
 	top: 35px;
 
