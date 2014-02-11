@@ -89,8 +89,6 @@ function on_resize(c,t){onresize=function(){clearTimeout(t);t=setTimeout(c,200)}
 
 function playVideo($obj){
 
-              // var dimensions = { "width": 800, "height": 400};
-
             var theItem = $obj.closest( ".item" );
             var theImage = theItem.find(".jsPlayVideo");
             var thePlaybutton = theItem.find(".playcenter");
@@ -98,16 +96,9 @@ function playVideo($obj){
 
             var theId = theImage.data("playid");
 
-
-            console.log( theItem );
-            var dimensions = { "width": theImage.width(), "height": theImage.height()};
-
-            console.log( dimensions.width );
-            console.log( dimensions.height );
-
             // theWrapper.css( { "width": dimensions.width, "height": dimensions.height  } );
             thePlaybutton.addClass("hider");
-            var theIframeVideo = iframeTemplate( {id: theId, height: dimensions.height });
+            var theIframeVideo = iframeTemplate( {id: theId});
             theItem.append(theIframeVideo).css('background-image', 'none');
 
             theItem.fitVids({ customSelector: "iframe[src^='http://www.svtplay.se']"});
@@ -123,7 +114,7 @@ $(document).ready(function() {
   //INIT RECOMMEND LIST
   //PlaylistHandler.init($("#epg"));
   //RecommendHandler.init($('#recommend-list'));
-  //VideoCarouselHandler.init($('#carousel-example-generic'));
+  VideoCarouselHandler.init($('#carousel-example-generic'));
 
 
   // $(".video-wrapper").html( theIframe(1719847) );
@@ -150,23 +141,23 @@ $(document).ready(function() {
 
     //$(".jsRelatedTitle").text( $("#carousel-example-generic .active").data("program") );
 
-    /*$('#carousel-example-generic').on('slid.bs.carousel', function () {
+    $('#carousel-example-generic').on('slid.bs.carousel', function () {
 
         console.log("SLIDING");
 
-        $(".video-wrapper").remove();
+        $(".fluid-width-video-wrapper").remove();
         $(".hider").removeClass("hider");
 
       	// wait
       	setTimeout(function() {
       		// DO ALL THE OTHER STUFF!!!
       		$activeItem = $("#epg .active");
-      		centerScroller($activeItem);
+      		//centerScroller($activeItem);
 
           playVideo( $(".item.active") );
 
       	}, 100);
-    });*/
+    });
 
 
 });

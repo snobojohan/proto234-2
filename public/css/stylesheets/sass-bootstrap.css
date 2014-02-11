@@ -6169,7 +6169,7 @@ html, body {
 /* line 9, ../sass/_theme-style.scss */
 body {
   padding: 0;
-  background-color: #fff; }
+  background-color: #fdfbed; }
 
 /* line 13, ../sass/_theme-style.scss */
 body.framer {
@@ -6306,15 +6306,15 @@ a.no-underline:hover {
     font-size: 30px; }
   /* line 146, ../sass/_theme-style.scss */
   .svt234-Splash .progress {
-    max-width: 280px;
-    height: 20px;
-    margin: 0 auto 40px; }
-  /* line 152, ../sass/_theme-style.scss */
+    height: 2px;
+    margin: 40px auto; }
+  /* line 151, ../sass/_theme-style.scss */
   .svt234-Splash .progress-bar {
     -webkit-transition-duration: 3s;
     -moz-transition-duration: 3s;
     -o-transition-duration: 3s;
-    transition-duration: 3s; }
+    transition-duration: 3s;
+    background-color: #ff7372; }
 
 /* MAIN VIDEO */
 /* line 158, ../sass/_theme-style.scss */
@@ -6387,14 +6387,14 @@ a.no-underline:hover {
   left: 35px;
   top: 35px; }
   /* line 237, ../sass/_theme-style.scss */
-  .svt234-VideoInfo h4 {
+  .svt234-VideoInfo .title {
     color: #fff;
     font-size: 6rem;
     font-weight: 100;
     margin-top: 0;
     margin-bottom: 3px; }
   /* line 245, ../sass/_theme-style.scss */
-  .svt234-VideoInfo .title {
+  .svt234-VideoInfo .episode {
     color: #fff;
     font-weight: 100;
     font-style: italic; }

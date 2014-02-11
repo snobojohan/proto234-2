@@ -8,7 +8,7 @@ html, body {
 }
 body {
 	padding: 0; // 60px 0;
-	background-color: #fff;
+	background-color: #fdfbed;
 }
 body.framer {
 	background-image: url("/img/bg-framer.png");
@@ -144,13 +144,13 @@ a.no-underline:hover {
 	}
 
 	.progress {
-		max-width: 280px;
-		height: 20px;
-		margin: 0 auto 40px;
+		height: 2px;
+		margin: 40px auto;
 	}
 
 	.progress-bar {
 		@include transition-duration(3s);
+		background-color: #ff7372;
 	}
 }
 
@@ -234,7 +234,7 @@ a.no-underline:hover {
 	left: 35px;
 	top: 35px;
 
-	h4 {
+	.title {
 		color: #fff;
 		font-size: 6rem;
 		font-weight: 100;
@@ -242,7 +242,7 @@ a.no-underline:hover {
 		margin-bottom: 3px;
 	}
 
-	.title {
+	.episode {
 		color: #fff;
 		font-weight: 100;
 		font-style: italic;
