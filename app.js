@@ -16,6 +16,11 @@ var 	express = require('express')
 
 var app = express();
 
+// Authenticator
+app.use(express.basicAuth(function(user, pass) {
+ return user === 'demo' && pass === 'plattform';
+}));
+
 app.use(express.bodyParser({uploadDir:'/tmpfiles'}));
 
 /// DIRTY ///
