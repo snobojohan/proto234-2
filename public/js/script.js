@@ -107,26 +107,19 @@ function playVideo($obj){
 
 $(document).ready(function() {
 
+
   //SPLASH
   SplashHandler.init($('.svt234-Splash'));
   SplashHandler.show();
 
   //INIT RECOMMEND LIST
-  //PlaylistHandler.init($("#epg"));
+  PlaylistHandler.init($("#epg"));
   //RecommendHandler.init($('#recommend-list'));
   VideoCarouselHandler.init($('#carousel-example-generic'));
   setNextText();
 
 
   // $(".video-wrapper").html( theIframe(1719847) );
-  $(".jsPlayVideo").bind({
-
-        click: function(event) {
-            playVideo( $(this) );
-            event.preventDefault();
-        }
-
-    });
 
 	// make it btn
 	$('.file-inputs').bootstrapFileInput();
@@ -146,8 +139,7 @@ $(document).ready(function() {
 
         console.log("SLIDING");
 
-        $(".fluid-width-video-wrapper").remove();
-        $(".hider").removeClass("hider");
+        VideoCarouselHandler.stopVideo();
 
         setNextText();
       	// wait
@@ -172,7 +164,6 @@ $(document).ready(function() {
         $nextbutton.find('.next-episode').text(episode);
       }
     }
-
 
 });
 
@@ -211,7 +202,9 @@ var PlaylistHandler = {
         this.$container = $container;
         this.template = Handlebars.compile($("#playlist-item").html());
         this.bindEvents();
+        this._updatePlaylist();
     },
+
     bindEvents: function() {
       var self = this;
       this.$container.siblings(".epg-arrows").on('click', '.jsScrollLeft', function(e) {
@@ -245,11 +238,27 @@ var PlaylistHandler = {
     getActiveIndex: function() {
         return parseInt(this.getActiveItem().data("slide-to"))
     },
+    _updatePlaylist: function() {
+      //if (this.width < 1)
+      this._calculateWidth();
+
+      this.$container.find('.epg__list').width(this.width);
+    },
     _updateIndex: function(startIndex) {
         this.$container.find('.epg__item:gt(' + startIndex + ')').each( function() {
             var obj = $(this);
             obj.attr("data-slide-to", parseInt(obj.attr("data-slide-to")) + 1);
         });
+    },
+    _calculateWidth: function() {
+      //SET WIDTH
+        var width = 0;
+        this.$container.find('.epg__item').each(function() {
+          //console.log('$(this).outerWidth()', $(this).outerWidth());
+          width += $(this).outerWidth();
+
+        });
+        this.width = width < 1 ? 10000 : width;
     }
 };
 
@@ -258,7 +267,33 @@ var VideoCarouselHandler = {
         this.$container = $container;
         this.template = Handlebars.compile($("#video-item").html());
 
+        this._bindEvents();
+
         this._updateVideos();
+    },
+    _bindEvents: function() {
+      var self = this;
+      $(".svt234-VideoControlls .video-close").on("click", function() {
+        self.closeVideo();
+        return false;
+      });
+
+        $(".jsPlayVideo").on("click", function(e) {
+          playVideo( $(this) );
+          e.preventDefault();
+        });
+
+    },
+    stopVideo: function() {
+      $(".fluid-width-video-wrapper").remove();
+      $(".hider").removeClass("hider");
+    },
+    closeVideo: function() {
+      VideoCarouselHandler.stopVideo();
+      $('.svt234-MainVideo').addClass('hidden');
+       $('.svt234Page').removeClass("hidden")[0].offsetWidth;
+       $('.svt234Page').removeClass("splashHide");
+       PlaylistHandler._updatePlaylist();
     },
     addVideo: function($item, index) {
         this._updateVideos();
