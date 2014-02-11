@@ -215,6 +215,8 @@ a.no-underline:hover {
 		display: block;
 		overflow: hidden;
 		margin-bottom: 2px;
+		float: right;
+		clear: right;
 	}
 
 	.video-close {
@@ -226,9 +228,30 @@ a.no-underline:hover {
 
 	.video-next {
 		@extend %A_svt234-Controll;
+		@include transition(width 0.2s ease-in-out);
 		background-image: url('/img/video-ctrl-play.png');
 		background-repeat: no-repeat;
-		background-position: center;
+		background-position: 29px;
+		padding:22px 0 0 80px;
+		text-decoration: none;
+
+		&:hover {
+			width: 100%;
+		}
+
+		.next-title,
+		.next-episode {
+			display: block;
+			color: #fff;
+			margin-right: 18px;
+			white-space:nowrap;
+		}
+
+		.next-episode {
+			font-size: 12px;
+			font-style: italic;
+			color: #d2d2d2;
+		}
 	}
 }
 

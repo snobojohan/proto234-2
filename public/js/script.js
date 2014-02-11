@@ -115,6 +115,7 @@ $(document).ready(function() {
   //PlaylistHandler.init($("#epg"));
   //RecommendHandler.init($('#recommend-list'));
   VideoCarouselHandler.init($('#carousel-example-generic'));
+  setNextText();
 
 
   // $(".video-wrapper").html( theIframe(1719847) );
@@ -148,16 +149,29 @@ $(document).ready(function() {
         $(".fluid-width-video-wrapper").remove();
         $(".hider").removeClass("hider");
 
+        setNextText();
       	// wait
       	setTimeout(function() {
       		// DO ALL THE OTHER STUFF!!!
       		$activeItem = $("#epg .active");
+
       		//centerScroller($activeItem);
 
           playVideo( $(".item.active") );
 
       	}, 100);
     });
+
+    function setNextText() {
+      var $next = $(".item.active").next();
+      if ($next.length > 0) {
+        var title = $next.find(".svt234-VideoInfo .title").text(),
+            episode = $next.find(".svt234-VideoInfo .episode").text(),
+            $nextbutton = $(".svt234-VideoControlls .video-next");
+        $nextbutton.find('.next-title').text(title);
+        $nextbutton.find('.next-episode').text(episode);
+      }
+    }
 
 
 });
