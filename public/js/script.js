@@ -285,6 +285,14 @@ var VideoCarouselHandler = {
           e.preventDefault();
         });
 
+        this.$container.on('click', '.se-more', function() {
+          $('.svt234-More').toggleClass('hideview');
+        });
+
+        $('.svt234-More').on('click', '.close-view', function() {
+          $('.svt234-More').toggleClass('hideview');
+        });
+
     },
     showView: function() {
       $('.svt234-MainVideo').addClass('splashHide').removeClass('hidden')[0].offsetWidth;

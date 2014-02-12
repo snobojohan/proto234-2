@@ -239,6 +239,7 @@ a.no-underline:hover {
 	height: 100%;
 	position: relative;
 	z-index:60;
+	overflow: hidden;
 
 	.carousel,
 	.carousel-inner {
@@ -266,11 +267,65 @@ a.no-underline:hover {
 	.fluid-width-video-wrapper {
 		position: static;
 	}
+
+	.title {
+		color: #fff;
+		font-size: 42px;
+		font-weight: 100;
+		margin-top: 0;
+		margin-bottom: 3px;
+	}
 }
 
 .svt234-Overlay {
 	position: absolute;
 	z-index: 100;
+}
+
+.svt234-More {
+	@include transition(bottom 0.3s ease-in-out);
+	background: rgba(20,20,20, .9);
+	color: #fff;
+	width: 100%;
+	bottom: 0;
+	padding: 40px 100px;
+
+	.byline {
+		font-size: 14px;
+		font-weight: 100;
+		color: #cacaca;
+		margin-bottom: 25px;
+	}
+
+	.title {
+		margin-bottom: 10px;
+	}
+
+	h5 {
+		font-size: 14px;
+		font-weight: 100;
+		color: #cacaca;
+
+		span {
+			font-weight: 300;
+			color: #fff;
+		}
+	}
+
+	.close-view {
+		position: absolute;
+		top: 51px;
+		right: 100px;
+		background-image: url('/img/video-ctrl-close.png');
+		background-repeat: no-repeat;
+		background-position: center;
+		width: 30px;
+		height: 30px;
+	}
+
+	&.hideview {
+		bottom: -100%;
+	}
 }
 
 .svt234-VideoLogo {
@@ -347,14 +402,6 @@ a.no-underline:hover {
 
 	left: 35px;
 	top: 35px;
-
-	.title {
-		color: #fff;
-		font-size: 42px;
-		font-weight: 100;
-		margin-top: 0;
-		margin-bottom: 3px;
-	}
 
 	.episode {
 		color: #fff;
@@ -634,7 +681,7 @@ a.no-underline:hover {
 	position: absolute;
 	z-index: 9999;
 	width: 100%;
-	top: 10px;
+	top: 5px;
 	left: 0;
 	a {
 		position: absolute;
