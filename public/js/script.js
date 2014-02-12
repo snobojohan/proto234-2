@@ -79,7 +79,10 @@ $(document).ready(function() {
 
     //$(".jsRelatedTitle").text( $("#carousel-example-generic .active").data("program") );
 
-    $('#carousel-example-generic').on('slid.bs.carousel', function () {
+
+    $('#carousel-example-generic').on('slide.bs.carousel', function() {
+        $('.svt234-More').addClass('hideview');
+    }).on('slid.bs.carousel', function () {
 
         console.log("SLIDING");
 
