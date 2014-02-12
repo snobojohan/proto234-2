@@ -101,11 +101,14 @@ function playVideo($obj){
             var theIframeVideo = iframeTemplate( {id: theId});
             theItem.append(theIframeVideo).css('background-image', 'none');
 
+            console.log('item',theItem);
+
             theItem.fitVids({ customSelector: "iframe[src^='http://www.svtplay.se']"});
 
 }
 
 $(document).ready(function() {
+
 
 
   //SPLASH
@@ -158,16 +161,16 @@ $(document).ready(function() {
       var $next = $(".item.active").next(),
           $prev = $(".item.active").prev();
       if ($next.length > 0) {
-        var title = $next.find(".svt234-VideoInfo .title").text(),
-            episode = $next.find(".svt234-VideoInfo .episode").text(),
+        var title = $next.find(".svt234-VideoInfo").data("title"),
+            episode = $next.find(".svt234-VideoInfo").data("episode"),
             $nextbutton = $(".svt234-VideoControlls .video-next");
         $nextbutton.find('.next-title').text(title);
         $nextbutton.find('.next-episode').text(episode);
       }
 
       if ($prev.length > 0) {
-        var title = $prev.find(".svt234-VideoInfo .title").text(),
-            episode = $prev.find(".svt234-VideoInfo .episode").text(),
+        var title = $prev.find(".svt234-VideoInfo").data("title"),
+            episode = $prev.find(".svt234-VideoInfo").data("episode"),
             $prevbutton = $(".svt234-VideoControlls .video-prev");
         $prevbutton.find('.next-title').text(title);
         $prevbutton.find('.next-episode').text(episode);
@@ -179,12 +182,15 @@ $(document).ready(function() {
 
 var SplashHandler = {
     TRANSITION_END : "webkitTransitionEnd transitionend oTransitionEnd otransitionend",
-    TRANSITION_START : "webkitTransitionStart transitionstart oTransitionStart otransitionstart",
 
     init: function($container) {
       this.$container = $container;
       this.$progressbar = $container.find('.progress');
       this.$progressbar.find('.progress-bar').css('width', '0');
+      if (window.location.search.substring(1).indexOf("autostart") > -1) {
+          console.log("Autostart is on");
+          this.autoStart = true;
+      }
     },
 
     show: function() {
@@ -193,13 +199,17 @@ var SplashHandler = {
       self.startLoader();
     },
     hide: function() {
-      this.$container.one(this.TRANSITION_END, function() {
-          $('.svt234-MainVideo').removeClass('splashHide');
+      var self = this;
+      this.$container.one(this.TRANSITION_END, function(e) {
+          $('.svt234-MainVideo').removeClass('splashHide')[0].offsetWidth;
+          if (self.autoStart)
+            VideoCarouselHandler.startVideo();
       }).addClass("splashHide");
     },
     startLoader: function() {
       var self = this;
-      this.$progressbar.find('.progress-bar').one(this.TRANSITION_END, function() {
+      this.$progressbar.find('.progress-bar').one(this.TRANSITION_END, function(e) {
+        e.stopPropagation();
         self.hide();
       }).css('width', '100%');
     }
@@ -293,6 +303,10 @@ var VideoCarouselHandler = {
           e.preventDefault();
         });
 
+    },
+    startVideo: function() {
+      console.log('startvideo')
+      playVideo(this.$container.find('.item.active'));
     },
     stopVideo: function() {
       $(".fluid-width-video-wrapper").remove();

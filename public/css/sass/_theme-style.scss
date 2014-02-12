@@ -350,7 +350,7 @@ a.no-underline:hover {
 
 	.title {
 		color: #fff;
-		font-size: 6rem;
+		font-size: 42px;
 		font-weight: 100;
 		margin-top: 0;
 		margin-bottom: 3px;
@@ -363,10 +363,11 @@ a.no-underline:hover {
 	}
 
 	.se-more {
-		display: block;
+		display: inline-block;
 		color: #fff;
 		margin: 10px 0 0;
-		text-decoration: underline;
+		background: #26221f;
+		padding: 20px;
 	}
 }
 
