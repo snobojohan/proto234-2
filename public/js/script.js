@@ -29,64 +29,6 @@ $.fn.closestToOffset = function(offset) {
 
 var $activeItem;
 
-var centerScroller = function($item){
-
-    var centerScrollPoint = ( $("#epg").width() / 2 ) - ( $item.width() / 2 );
-
-    // Special iteration fix
-    // var centerScrollPoint = (( $("#epg").width() / 4 ) - 12 ) - ( $item.width() / 2 );
-
-    $("#epg").scrollTo( $item , 250, {axis:'x',offset: - centerScrollPoint} );
-}
-
-var theScroller = function(direction){
-
-    console.log("do some scrolling to the: " + direction);
-
-    $area = $("#epg");
-
-
-    $(".epg__item:visible").each(function( index ) {
-
-      console.log( index + ": " + $( this ).text() );
-
-    });
-
-    // $("#epg").scrollTo( $item , 500, {axis:'x',offset: - 30 } );
-}
-
-// debulked onresize handler
-function on_resize(c,t){onresize=function(){clearTimeout(t);t=setTimeout(c,200)};return c};
-
-/*on_resize(function() {
-  console.log("RESIZED");
-  if($activeItem){
-  	centerScroller($activeItem);
-  }
-
-  var aspectRatio = 9 / 16;
-  // console.log("aspectRatio : " + aspectRatio);
-
-  var $videoIframe = $("iframe.video-wrapper__object");
-  var $videoWrapper = $("div.video-wrapper");
-
-  if( $videoIframe.length ){
-
-    var iframeWidth = $videoIframe.width();
-
-    $videoIframe.css( "height", function( index ) {
-        return iframeWidth * aspectRatio;
-    });
-
-
-	  $videoIframe.removeAttr('height');
-
-  } else {
-  	// console.log("Object was not an iFrame");
-  }
-
-})();*/ // these parenthesis triggers this function on pageload
-
 function playVideo($obj){
 
             var theItem = $obj.closest( ".item" );
@@ -145,6 +87,8 @@ $(document).ready(function() {
         VideoCarouselHandler.stopVideo();
 
         setNextText();
+
+        PlaylistHandler.setActiveItem(VideoCarouselHandler.getActiveIndex());
       	// wait
       	setTimeout(function() {
       		// DO ALL THE OTHER STUFF!!!
@@ -229,11 +173,31 @@ var PlaylistHandler = {
       var self = this;
       this.$container.siblings(".epg-arrows").on('click', '.jsScrollLeft', function(e) {
         console.log('scroll left');
-        centerScroller(self.$container.find('.epg__item').closestToOffset({top: 0, left: self.$container.width()/2}).prev());
+        PlaylistHandler.centerScroller(self.$container.find('.epg__item').closestToOffset({top: 0, left: self.$container.width()/2}).prev());
       }).on('click', '.jsScrollRight', function(e) {
-         centerScroller(self.$container.find('.epg__item').closestToOffset({top: 0, left: self.$container.width()/2}).next());
+         PlaylistHandler.centerScroller(self.$container.find('.epg__item').closestToOffset({top: 0, left: self.$container.width()/2}).next());
          console.log('scroll right');
       });
+
+      this.$container.on('click', '.epg__item', function(e) {
+        self.setActiveItem($(this).data("to"));
+        e.preventDefault();
+      });
+
+      $('.svt234-PlaylistInfo').on('click', '.watch', function() {
+        var $avtiveItem = self.getActiveItem();
+        VideoCarouselHandler.setActiveIndex($avtiveItem.data("to"));
+       $('.svt234Page').addClass("splashHide");
+        VideoCarouselHandler.showView();
+
+      });
+
+      /*$(window).on("resize", function() {
+        var activeItem = self.getActiveItem();
+        if (activeItem) {
+          self.centerScroller(activeItem);
+        }
+      });*/
     },
     addToPlaylist: function($item, index) {
         var $activeElement = this.getActiveItem(),
@@ -249,6 +213,10 @@ var PlaylistHandler = {
         this._updateIndex(activeIndex);
         return this.$container.find('.epg__item:eq(' + activeIndex + ')').after(html).next();
     },
+    setActiveItem: function(index) {
+      this.$container.find('.epg__item.active').removeClass('active');
+      this.centerScroller(this.$container.find('.epg__item:eq(' + index + ')').addClass('active'));
+    },
     getActiveItem: function() {
         return this.$container.find('.epg__item.active');
     },
@@ -258,11 +226,20 @@ var PlaylistHandler = {
     getActiveIndex: function() {
         return parseInt(this.getActiveItem().data("slide-to"))
     },
+    centerScroller: function($item) {
+
+        var epg = $("#epg"),
+            centerScrollPoint = ( epg.width() / 2 ) - ( $item.width() / 2 );
+
+        epg.scrollTo( $item , 250, {axis:'x',offset: - centerScrollPoint} );
+    },
+
     _updatePlaylist: function() {
       //if (this.width < 1)
       this._calculateWidth();
 
       this.$container.find('.epg__list').width(this.width);
+      this.centerScroller(this.getActiveItem());
     },
     _updateIndex: function(startIndex) {
         this.$container.find('.epg__item:gt(' + startIndex + ')').each( function() {
@@ -279,7 +256,7 @@ var PlaylistHandler = {
 
         });
         this.width = width < 1 ? 10000 : width;
-    }
+    },
 };
 
 var VideoCarouselHandler = {
@@ -304,8 +281,17 @@ var VideoCarouselHandler = {
         });
 
     },
-    startVideo: function() {
-      console.log('startvideo')
+    showView: function() {
+      $('.svt234-MainVideo').addClass('splashHide').removeClass('hidden')[0].offsetWidth;
+      $('.svt234-MainVideo').removeClass('splashHide');
+    },
+    startVideo: function(index) {
+
+      if (!index)
+        index = this.getActiveIndex();
+
+      this.$container.carousel(index);
+
       playVideo(this.$container.find('.item.active'));
     },
     stopVideo: function() {
@@ -335,6 +321,13 @@ var VideoCarouselHandler = {
 
         this._updateIndex(index);
         this.$container.find('.item:eq(' + activeIndex + ')').after(html);
+    },
+    setActiveIndex: function(index) {
+      this.stopVideo();
+      this.$container.carousel(index);
+    },
+    getActiveIndex: function() {
+      return this.$container.find('.item.active').data("index");
     },
     _updateVideos: function() {
         this.$videos = this.$container.find(".carousel-inner .item");

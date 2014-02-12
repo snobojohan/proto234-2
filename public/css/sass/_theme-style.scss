@@ -371,16 +371,29 @@ a.no-underline:hover {
 	}
 }
 
-.respFill {
-	position: absolute;
-	min-width: 100%;
-	top: 50%;
-	left: 50%;
-	-webkit-transform: translate(-50%, -50%);
-	-moz-transform: translate(-50%, -50%);
-	-ms-transform: translate(-50%, -50%);
-	-o-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
+.svt234-Categorys {
+	margin-top: 40px!important;
+	text-align: center;
+
+	h3 {
+		color: #656565;
+		font-size: 26px;
+		margin:0 auto 20px;
+		font-weight: 200;
+	}
+
+	li {
+		background: transparent url('/img/tag.png') no-repeat left center;
+		padding-left: 20px;
+		padding-right: 10px;
+
+		a {
+			color: #666;
+			font-size: 18px;
+			text-decoration: none;
+			border-bottom: 1px dotted #cbc297;
+		}
+	}
 }
 
 .splashHide {
