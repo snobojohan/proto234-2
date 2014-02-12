@@ -1,4 +1,3 @@
-// TODO: Rekommenderat (vi tror du gillar). pusha in sig i playlist och bland items...
 
 $.fn.closestToOffset = function(offset) {
     var el = null, elOffset, x = offset.left, y = offset.top, distance, dx, dy, minDistance;
@@ -231,7 +230,13 @@ var PlaylistHandler = {
         var epg = $("#epg"),
             centerScrollPoint = ( epg.width() / 2 ) - ( $item.width() / 2 );
 
-        epg.scrollTo( $item , 250, {axis:'x',offset: - centerScrollPoint} );
+        $(".now-playing").addClass('playhide')[0].offsetWidth;
+        epg.scrollTo( $item , 250, {axis:'x',offset: - centerScrollPoint, onAfter: function() {
+          console.log($item.offset());
+          $(".now-playing").css('left', $item.offset().left + ($item.width() / 2 - $(".now-playing").width() / 2) + "px").removeClass('playhide');
+        }} );
+
+
     },
 
     _updatePlaylist: function() {

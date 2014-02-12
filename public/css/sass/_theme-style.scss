@@ -396,6 +396,42 @@ a.no-underline:hover {
 	}
 }
 
+.now-playing {
+	@include transition-property(opacity, top);
+	@include transition-duration(.2s);
+
+	transition-timing-function: ease-in-out;
+
+	@include opacity(1);
+	display:inline-block;
+	position: absolute;
+	top: -30px;
+	color: #fff;
+	text-transform: uppercase;
+	background: #595c6f;
+	font-size: 11px;
+	padding: 3px 5px 2px;
+	left: 50%;
+
+	&.playhide {
+		@include opacity(0);
+		top: -27px;
+	}
+}
+.now-playing:after {
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-top-color: #595c6f;
+	border-width: 5px;
+	margin-left: -5px;
+}
+
 .splashHide {
 	@include opacity(0);
 }
