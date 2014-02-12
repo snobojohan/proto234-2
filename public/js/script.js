@@ -155,7 +155,8 @@ $(document).ready(function() {
     });
 
     function setNextText() {
-      var $next = $(".item.active").next();
+      var $next = $(".item.active").next(),
+          $prev = $(".item.active").prev();
       if ($next.length > 0) {
         var title = $next.find(".svt234-VideoInfo .title").text(),
             episode = $next.find(".svt234-VideoInfo .episode").text(),
@@ -163,6 +164,15 @@ $(document).ready(function() {
         $nextbutton.find('.next-title').text(title);
         $nextbutton.find('.next-episode').text(episode);
       }
+
+      if ($prev.length > 0) {
+        var title = $prev.find(".svt234-VideoInfo .title").text(),
+            episode = $prev.find(".svt234-VideoInfo .episode").text(),
+            $prevbutton = $(".svt234-VideoControlls .video-prev");
+        $prevbutton.find('.next-title').text(title);
+        $prevbutton.find('.next-episode').text(episode);
+      }
+
     }
 
 });

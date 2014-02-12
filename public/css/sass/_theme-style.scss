@@ -281,7 +281,7 @@ a.no-underline:hover {
 .svt234-VideoControlls {
 	top: 50%;
 	right: 0;
-	margin-top: -80px;
+	margin-top: -120px;
 
 	%A_svt234-Controll {
 		width: 80px;
@@ -301,31 +301,44 @@ a.no-underline:hover {
 		background-position: center;
 	}
 
-	.video-next {
+	.next-title,
+	.next-episode {
+		display: block;
+		color: #fff;
+		margin-right: 18px;
+		white-space:nowrap;
+	}
+
+	.next-episode {
+		font-size: 12px;
+		font-style: italic;
+		color: #d2d2d2;
+	}
+
+	.video-next,
+	.video-prev {
 		@extend %A_svt234-Controll;
 		@include transition(width 0.2s ease-in-out);
-		background-image: url('/img/video-ctrl-play.png');
+
 		background-repeat: no-repeat;
 		background-position: 29px;
 		padding:22px 0 0 80px;
 		text-decoration: none;
+	}
+
+	.video-prev {
+		background-image: url('/img/video-ctrl-prev.png');
 
 		&:hover {
 			width: 100%;
 		}
+	}
 
-		.next-title,
-		.next-episode {
-			display: block;
-			color: #fff;
-			margin-right: 18px;
-			white-space:nowrap;
-		}
+	.video-next {
+		background-image: url('/img/video-ctrl-play.png');
 
-		.next-episode {
-			font-size: 12px;
-			font-style: italic;
-			color: #d2d2d2;
+		&:hover {
+			width: 100%;
 		}
 	}
 }
