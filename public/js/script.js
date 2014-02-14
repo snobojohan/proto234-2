@@ -119,7 +119,7 @@ var SplashHandler = {
       var self = this;
       this.$container.one(this.TRANSITION_END, function(e) {
           //$('.svt234Page').removeClass('splashHide hidden')[0].offsetWidth;
-          $('.svt234-MainVideo').removeClass('splashHide hidden')[0].offsetWidth;
+          $('.svt234-MainVideo').removeClass('splashHide')[0].offsetWidth;
           PlaylistHandler._updatePlaylist();
           if (self.autoStart)
             VideoCarouselHandler.startVideo();
