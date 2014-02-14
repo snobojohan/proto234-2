@@ -22,13 +22,13 @@
 	</nav>
 
 	<!-- INFO -->
-	<div class="svt234-Info">
+	<!--div class="svt234-Info">
 		<img class="svt234-logo" src="/img/logo-page.png" alt="" />
 		<img class="svt234-info" src="/img/page-text.png" alt="" />
-	</div>
+	</div-->
 
 	<!-- PLAYLIST -->
-	<div class="svt234Container " style="position: relative">
+	<div class="svt234Container svt234InfoContainer" style="position: relative">
 	  <div class="epg-arrows">
 	      <a href="#" class="left jsScrollLeft"><i class="fa fa-angle-left fa-5x"></i></a>
 	      <a href="#" class="right jsScrollRight"><i class="fa fa-angle-right fa-5x"></i></a>
@@ -48,40 +48,52 @@
 
 	  </div>
 
-	  <div class="svt234-PlaylistInfo">
+	  <div class="svt234-PlaylistInfo splashHide">
 	  	<div class="innerInfo">
-	  		<div class="progress">
-				<div class="progress-bar" role="progressbar" style="width:20%;"></div>
-			</div>
-	  		<span class="category">svensk sci-fi</span>
+	  		<h3>Jills Veranda</h3>
+	  		<span class="category">underhållning</span>
 	  		<p class="title-info">
 	  			Svensk dramathriller som följer några människor vars liv förändras dramatiskt av den nya generationen robotar – hubotarna.
 	  		</p>
-	  		<button type="button" class="watch">Börja titta</button>
+	  		<button type="button" class="watch">spela</button>
 	  	</div>
+
+	  	<a class="close-view text-hide">
+			Stäng
+		</a>
 	  </div>
+	</div>
+
+	<div class="svt234-middle">
+		<img class="svt234-logo" src="/img/logo-page.png" alt="" />
 	</div>
 
 	<!-- KATEGORIER -->
 	<div class="svt234Content svt234-Categorys">
-		<h3>Kategorikanaler</h3>
-		<ul class="list-inline">
-			<li>
-				<a href="#">Krim</a>
-			</li>
-			<li>
-				<a href="#">RomCom</a>
-			</li>
-			<li>
-				<a href="#">Korta program</a>
-			</li>
-		</ul>
+		<div class="category-wrapper">
+			<h3>Kategorikanaler</h3>
+			<ul class="list-inline">
+				<li>
+					<a href="#">Krim</a>
+				</li>
+				<li>
+					<a href="#">RomCom</a>
+				</li>
+				<li>
+					<a href="#">Korta program</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="dummy-bottom">
+		<img src="/img/dummy-recommend.png" alt="" />
 	</div>
 </div>
 
 
 <!-- Main Video -->
-<div class="svt234-MainVideo splashHide">
+<div class="svt234-MainVideo splashHide hidden">
 	<div id="carousel-example-generic" class="carousel slide svt234Content" data-ride="carousel" data-interval="false">
 
 	    <!-- Wrapper for slides -->
