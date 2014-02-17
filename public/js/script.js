@@ -229,16 +229,17 @@ var PlaylistHandler = {
         return parseInt(this.getActiveItem().data("slide-to"))
     },
     centerScroller: function($item) {
-
+      if($("#epg").length ){
         var epg = $("#epg"),
             centerScrollPoint = ( epg.width() / 2 ) - ( $item.width() / 2 );
 
         $(".now-playing").addClass('playhide')[0].offsetWidth;
+        
         epg.scrollTo( $item , 250, {axis:'x',offset: - centerScrollPoint, onAfter: function() {
           console.log($item.offset());
           $(".now-playing").css('left', $item.offset().left + ($item.width() / 2 - $(".now-playing").width() / 2) + "px").removeClass('playhide');
         }} );
-
+      }
 
     },
 

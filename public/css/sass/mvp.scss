@@ -1,0 +1,382 @@
+// Compass utilities
+@import "compass";
+
+// Core variables and mixins
+@import "variables";
+	
+	// Themed stuff
+	@import "theme-variables";
+
+@import "font-awesome";
+
+	$body-bg:  #fdfbed;
+
+	$text-brown: #8c8973;
+
+@import "mixins";
+html {
+	body.tamperstart {
+		visibility: hidden;
+	}
+	body {
+
+
+		color: $text-color !important;
+		
+		background-color: #fff !important;
+
+		h1, h2, h3, h4, h5, h6, p, div, span {
+			color: $gray !important;
+		}
+		.play-category-header {
+			display: none;
+		}
+		#recommended-videos {
+		
+			overflow: visible;
+
+
+			/*
+			// EDIT
+			text-align: center;
+
+			border: none !important;
+
+			&:before {
+				content: " Spellistan ";
+			}
+
+			background: $gray-lighter !important;
+			*/
+			
+		}
+
+		.play-videoarea-container-outer--tampered  {
+			min-height: 250px !important;
+			border: none !important;
+
+			.play-videolist-container-outer-teaser, .play-videoarea-container-main {
+				display: none;
+			}
+
+			.play-videoarea-container-main, .play-videoarea-container-aside  {
+				
+				display: none;
+			}
+		}
+		
+		.play-alphabetic-group.is-first {
+			.playx-padding-top-xs {
+				// display: none;
+			}
+		}
+		.playJsAlphabeticTitle {
+			// clear: both;
+			// border: 1px solid red;
+			// margin-top: 10px;
+			/*
+			.ao-image {
+				width: 60px;
+				height: 60px;
+				float: left;
+				
+			}
+			a {
+				float: left;
+				text-indent: 1em;
+				position: relative;
+				top: 1em;
+				font-size: 1.2em;
+				overflow: hidden;
+				max-width: 150px;
+			}
+			*/
+		}
+		
+		
+
+		.svtplayerTime {
+			color: #fff !important;
+		}
+		.play-h3, .play-h2, .mvp-h1 {
+			font-weight: 100;
+			font-size: 2em;
+			color: $text-brown !important;
+		}
+		.playAlphabeticSkiplink.play-h3 {
+			font-size: 1.5em;
+		}
+
+		.mvp-h1 {
+			font-size: 4em;
+		}
+		.play-h4, .mvp-h4 {
+			font-weight: 100;
+			font-size: 1.5em;
+			color: $text-brown !important;
+		}
+		.play-alphabetic-link.play-h4 {
+			font-size: 1.2em;
+		}
+		 .mvp-h4 {
+			margin-bottom: 1em;
+		}
+		.mvp-lead {
+			font-size: 16px;
+		}
+		.play-navigation-header {
+			margin-left: -10px;
+			* {
+				border: none !important;
+			}
+			.channels.play-menu-item {
+				display: none;
+			}
+		}
+		.play-beta-header {
+			display: none;
+		}
+
+		.play-root {
+			background: $body-bg url("http://localhost:3000/img/red.png") repeat-x;
+			// background: $body-bg !important;
+		}
+		.play-footer {
+			border-top: 1px solid #eee !important;
+			background: #fff !important;
+			text-align: left !important;
+			div {
+				// visibility: hidden !important;
+			}
+			.play-container-base {
+    			// max-width: 85% !important;
+			}
+		}
+
+		.playLogo {
+			display: none;
+		}
+		.playGlobalHeader {
+			background-color: #ed6160;
+			margin: 0 0 !important;
+			margin-bottom: 30px !important;
+			color: #FFF !important;
+			height: 40px;
+			a, a:visited {
+				color: #FFF !important;
+				&:hover {
+					color: #FFF !important;
+				}
+			}
+		}
+
+		a, a:visited, a:active, a:focus {
+			color: $link-color !important;
+			&:hover {
+				color: $link-hover-color !important;
+			}
+		}
+
+		.play-videolist-group {
+			border-bottom: 1px solid rgba(0,0,0,0.1);
+			.play-typo-bread {
+				font-family: georgia;
+				font-style: italic;
+				color: $gray-light !important;
+			}
+		}
+
+		.play-videolist-expanded {
+			background: #fff !important;
+		}
+
+		.play-icon-tv {
+			display: none;
+		}
+
+		.play-video-element-caption-teaser, .play-category-caption {
+			* {
+				color: #fff !important;
+			}
+		}
+		.play-icon-oppetarkiv {
+			background-image: none;
+			width: 100%;
+			&:before {
+				content: " SVT Play (öppnas på svtplay.se)";
+			}
+		}
+		.play-h6.playx-color-lightgrey {
+			display: none;
+		}
+		.play-button-group {
+			background-color: #eee;
+		}
+		.play-button-group-item {
+			border-color: #fff;
+		}
+		.play-alphabetic-group {
+			border: none;
+		}
+		.play-alphabetic-letter {
+    		border-bottom: 1px solid rgba(0,0,0,0.1);
+    
+		}
+
+		.is-selected.play-button-small, .is-selected.play-button-large, .is-selected.play-button-xlarge, .is-selected.play-button-group-item {
+			background-color: #aaa;
+			
+			color: #fff !important;
+			
+		}
+
+		.play-button-group-item:hover {
+			background-color: #FFF;
+		}
+
+		.play-search-box {
+			border-color: $gray-lighter;
+		}
+
+		.tags {
+			font-size: 1.5em;
+			padding-bottom: 50px;
+			.glyphicon {
+				color: $link-color;
+				opacity: 0.8;
+			}
+			a {
+				// color: $text-brown !important;
+				// font-size: 1.5em;
+				font-weight: 200 !important;
+				&:hover {
+					text-decoration: none;
+				}
+				i {
+					color: $gray-light !important;
+				}
+			}
+		}
+
+	}
+
+}
+		.no-touch .play-slidablelist-fade {
+			-moz-box-shadow: 0 0 140px 50px $body-bg !important;
+			-webkit-box-shadow: 0 0 140px 50px $body-bg !important;
+			box-shadow: 0 0 140px 50px $body-bg !important;
+		}
+
+.hbs-info {
+	font-size: 14px !important;
+	overflow: visible !important;
+	min-height: 110px;
+	p {
+		position: absolute;
+		width: 300px;
+		margin-top: 50px;
+		color: $gray-light !important;
+		overflow: visible !important;
+	}
+}
+
+.playcenter {
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	display: table;
+	width: 6em;
+	height: 6em;
+	margin-top: -3em;
+	margin-left: -3em;
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+	opacity: 0.8;
+	background-color: #fff;
+	-webkit-border-radius: 6em 6em;
+	-moz-border-radius: 6em / 6em;
+	border-radius: 6em / 6em;
+	text-align: center;
+	&:hover {
+		opacity: 1;
+	}
+}
+
+.playcenter--s {
+	margin-top: -4em;
+	margin-left: -3em;
+}
+
+.playcenter--s {
+	width: 4em;
+	height: 4em;
+	margin-top: -3em;
+	margin-left: -2em;
+	-webkit-border-radius: 2em 2em;
+	-moz-border-radius: 2em / 2em;
+	border-radius: 2em / 2em;
+}
+
+.playcenter .fa {
+	color: $brand-primary !important;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.play-share-count {
+	color: #FFF !important;
+	background-color: $gray-light !important;
+	a {
+		color: #FFF !important;
+	}
+
+}
+
+
+
+/// MEDIA BLOCK ///
+.svtMediaBlock, .svtMediaBlockText, .svtMediaBlockText-News, .svtMediaBlockText-Small {
+	overflow: hidden;
+	_overflow: visible;
+	zoom: 1;
+}
+.svtMBFig-O-R-R-R {
+	margin: 0;
+}
+@media only screen and (min-width: 601px){
+	.svtMBFig-O-R-R-R {
+		width: 60%;
+	}
+	.svtMediaBlock .svtMBFig-O-R-R-R {
+		float: right;
+		margin-left: 15px;
+	}
+}
+@media only screen and (max-width: 1024px){
+	.play-footer {
+			
+		.taglist {
+			margin-left: 15px !important;
+			margin-right: 15px !important;
+		}
+
+	}
+	.play-search-container {
+		margin-right: 15px !important;
+	}
+	// HERE
+	html body .playGlobalHeader {
+		margin-left: 15px !important;
+	}
+	
+}
+@media only screen and (min-width: 1025px){
+	.play-footer {
+			
+		.taglist {
+			margin-left: 0px !important;
+			margin-right: 0px !important;
+		}
+
+	}
+}

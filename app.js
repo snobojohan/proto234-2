@@ -8,6 +8,7 @@ var 	express = require('express')
 	,	routes = require('./routes')
 	,	http = require('http')
     ,   fs = require('fs')
+    ,   cors = require('cors')
 //	,	path = require('path')
 //	,	fs = require('fs')
 	/*,	dirty = require('dirty')*/;
@@ -17,11 +18,17 @@ var 	express = require('express')
 var app = express();
 
 // Authenticator
+/*
 app.use(express.basicAuth(function(user, pass) {
  return user === 'demo' && pass === 'plattform';
 }));
+*/
+
+// Allows cross-domain-requests
+app.use(cors());
 
 app.use(express.bodyParser({uploadDir:'/tmpfiles'}));
+
 
 /// DIRTY ///
 // var db = dirty('videos.db');
@@ -59,6 +66,13 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 
 app.use(app.router);
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://beta.svtplay.se");
+  res.header("Access-Control-Allow-Headers", "-Requested-With, x-requested-by");
+  next();
+});
+
 app.use(express.static(__dirname + '/public'));
 
 // development only

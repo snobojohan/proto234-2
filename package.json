@@ -9,7 +9,8 @@
     "express": "3.4.0",
     "hbs": "2.4.0",
     "dirty": "0.9.7",
-    "gm": "1.14.1"
+    "gm": "1.14.1",
+    "cors": "2.1.1"
   },
   "main": "app.js",
   "devDependencies": {
