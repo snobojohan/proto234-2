@@ -34,6 +34,7 @@ em {
 	width: 62px;
 	display:block;
 	margin: 0 auto;
+	position: relative;
 }
 .hider {
 	display: none !important;
@@ -169,6 +170,7 @@ a.no-underline:hover {
 	z-index:50;
 
 	.svt234-middle {
+		width: 100%;
 		//margin-top: 250px;
 		background: #ecebe1;
 		height: 60px;
@@ -269,6 +271,7 @@ a.no-underline:hover {
 	}
 
 	.svt234InfoContainer {
+		@include transition(all 0.3s ease-in-out);
 		background-size: cover;
 	}
 }
@@ -371,17 +374,6 @@ a.no-underline:hover {
 	}
 }
 
-
-.svt234-VideoLogo {
-	right: 35px;
-	top: 35px;
-}
-
-.svt234-VideoControlls {
-	top: 50%;
-	right: 0;
-	margin-top: -120px;
-
 	%A_svt234-Controll {
 		width: 80px;
 		height: 80px;
@@ -393,12 +385,29 @@ a.no-underline:hover {
 		clear: right;
 	}
 
-	.video-close {
-		@extend %A_svt234-Controll;
-		background-image: url('/img/video-ctrl-close.png');
-		background-repeat: no-repeat;
-		background-position: center;
-	}
+.svt234-VideoLogo {
+	right: 35px;
+	bottom: 35px;
+}
+
+.svt234-Close {
+	top: 35px;
+	right: 0;
+}
+.video-close {
+	@extend %A_svt234-Controll;
+	background-image: url('/img/video-ctrl-close.png');
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.svt234-VideoControlls {
+	top: 50%;
+	right: 0;
+	margin-top: -80px;
+
+
+
 
 	.next-title,
 	.next-episode {
@@ -667,26 +676,39 @@ a.no-underline:hover {
 	}
 }
 
+%fixed-square-xs-overlay {
+	@include transition(opacity 0.3s ease-out);
+	background-image: url('/img/playlist-play-big.png');
+		//background-image: linear-gradient(45deg, #45dddd 0%, #45dddd 50%, #05ccd1 51%);
+	width: 63px;
+	height: 63px;
+	border-radius: 63px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	content: "";
+	opacity: 0.8;
+}
+
 ///
 .epg {
   display: block;
   position: relative;
   //width: 100%;
   overflow-x: scroll;
-  overflow-y: hidden;
   // overflow: hidden;
   margin-left: 0px;
   //-webkit-box-shadow: inset 0px 4px 2px -2px rgba(0,0,0,0.53);
 	//box-shadow: 0px 2px 5px -2px rgba(0, 0, 0, 0.3), inset 0px 2px 5px -2px rgba(0, 0, 0, 0.3);;
   //height: 82px;
   .epg__list {
-  	@include clearfix;
     width: 10000px;
     margin: 0;
     padding: 0;
   }
 
   .epg__item {
+  	position: relative;
     list-style: none;
     background-color: #f7f6f0;
     display: block;
@@ -699,6 +721,49 @@ a.no-underline:hover {
     padding: 8px 12px 8px 12px;
     cursor: pointer;
 
+    //box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
+    /*&:before,
+    &:after {
+		position: absolute;
+		width: 40%;
+		height: 10px;
+		content: ' ';
+		left: 12px;
+		bottom: 12px;
+		background: transparent;
+		-webkit-transform: skew(-5deg) rotate(-5deg);
+		transform: skew(-5deg) rotate(-5deg);
+		-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+		box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+		z-index: -1;
+	}
+
+	&:after
+	{
+		left: auto;
+		right: 12px;
+		-webkit-transform: skew(5deg) rotate(5deg);
+		transform: skew(5deg) rotate(5deg);
+	}*/
+
+	.progress {
+		position: absolute;
+		top:0;
+		left: 0;
+		width: 100%;
+
+		height: 5px;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+		border-radius: 0;
+	}
+
+	.progress-bar {
+		background-color: #35d8da;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
     &:nth-child(odd) {
     	background: #f5f4ec;
     }
@@ -712,6 +777,10 @@ a.no-underline:hover {
       background-color: #deefeb;
       color: $btn-default-color;
       text-decoration: none;
+      .fixed-square-xs::after {
+      	@extend %fixed-square-xs-overlay;
+      }
+
     }
 
     .media-body {
@@ -725,6 +794,7 @@ a.no-underline:hover {
     	display: inline-block;
 		margin-bottom: 5px;
 		min-height: 12px;
+		white-space: nowrap;
     }
 
     &:first-child {
@@ -738,7 +808,22 @@ a.no-underline:hover {
 
   .epg__item.custom {
     	background-color: #FDFBDF;
-    	color: #000;
+    	color: #fff;
+
+  }
+
+  .epg__item.hover_click {
+  		background-color: #deefeb;
+      	color: $btn-default-color;
+
+      	/*.fixed-square-xs::after {
+	      	@extend %fixed-square-xs-overlay;
+	      	opacity: .3;
+	      }
+
+	   &:hover 	.fixed-square-xs::after {
+	      	opacity: .8;
+	   }*/
   }
 
   .epg__item--active,
