@@ -28,21 +28,21 @@ $.fn.closestToOffset = function(offset) {
 
 function playVideo($obj){
 
-            var theItem = $obj.closest( ".item" );
-            var theImage = theItem.find(".jsPlayVideo");
-            var thePlaybutton = theItem.find(".playcenter");
-            var iframeTemplate = Handlebars.compile($("#video-iframe").html());
+    var theItem = $obj.closest( ".item" );
+    var theImage = theItem.find(".jsPlayVideo");
+    var thePlaybutton = theItem.find(".playcenter");
+    var iframeTemplate = Handlebars.compile($("#video-iframe").html());
 
-            var theId = theImage.data("playid");
+    var theId = theImage.data("playid");
 
-            // theWrapper.css( { "width": dimensions.width, "height": dimensions.height  } );
-            thePlaybutton.addClass("hider");
-            var theIframeVideo = iframeTemplate( {id: theId});
-            theItem.append(theIframeVideo).css('background-image', 'none');
+    // theWrapper.css( { "width": dimensions.width, "height": dimensions.height  } );
+    thePlaybutton.addClass("hider");
+    var theIframeVideo = iframeTemplate( {id: theId});
+    theItem.append(theIframeVideo).css('background-image', 'none');
 
-            console.log('item',theItem);
+    console.log('item',theItem);
 
-            theItem.fitVids({ customSelector: "iframe[src^='http://www.svtplay.se']"});
+    theItem.fitVids({ customSelector: "iframe[src^='http://www.svtplay.se']"});
 
 }
 
@@ -147,29 +147,55 @@ var PlaylistHandler = {
     bindEvents: function() {
       var self = this;
       this.$container.siblings(".epg-arrows").on('click', '.jsScrollLeft', function(e) {
-        console.log('scroll left');
         PlaylistHandler.centerScroller(self.$container.find('.epg__item').closestToOffset({top: 0, left: self.$container.width()/2}).prev());
       }).on('click', '.jsScrollRight', function(e) {
          PlaylistHandler.centerScroller(self.$container.find('.epg__item').closestToOffset({top: 0, left: self.$container.width()/2}).next());
-         console.log('scroll right');
       });
 
-      this.$container.on('click', '.epg__item', function(e) {
+      this.$container.on('click', '.epg__item .fixed-square-xs', function(e) {
         //self.setActiveItem($(this).data("to"));
-        $('.svt234-PlaylistInfo').data("index", $(this).data("to"));
-        self.showInfo($(this));
+        var $obj = $(this),
+            to = $('.epg__item.hover_click')[0] === $obj[0] ? 0 : 500;
+
+        //var $avtiveItem = self.$container.find('.epg__item:eq(' + $obj.data("to") + ')');//self.getActiveItem();
+        VideoCarouselHandler.setActiveIndex($obj.closest('.epg__item').data("to"));
+        $('.svt234Page').addClass("splashHide hidden");
+        VideoCarouselHandler.showView();
+
+        //console.log(($('.epg__item.hover_click')[0] == $obj[0]), ($('.epg__item.hover_click')[0] === $obj[0]), $obj[0], $('.epg__item.hover_click')[0])
+        //$('.epg__item.hover_click').removeClass('hover_click');
+        //$('.svt234-PlaylistInfo').data("index", $obj.data("to"));
+        //self.showInfo($obj);
+        //self.setBigPoster($obj);
+        //self.centerScroller($obj);
+
+        //$obj.addClass('hover_click');
+
+        /*if (e.target.className == "fixed-square-xs") {
+
+          setTimeout(function() {
+            //$('.epg__item.hover_click').removeClass('hover_click');
+            $('.svt234-PlaylistInfo .watch').trigger('click');
+          }, to);
+        }*/
         e.preventDefault();
+      }).find('.epg__item').hover( function() {
+          $(this).css('padding-bottom', ($(this).find('.title-info').height() + 32) + "px");
+          self.setBigPoster($(this));
+      }, function() {
+        $(this).css('padding-bottom', '');
+        self.setBigPoster(self.getActiveItem());
       });
 
 
-      $('.svt234-PlaylistInfo').on('click', '.watch', function() {
+      /*$('.svt234-PlaylistInfo').on('click', '.watch', function() {
 
         var $avtiveItem = self.$container.find('.epg__item:eq(' + $('.svt234-PlaylistInfo').data("index") + ')');//self.getActiveItem();
         VideoCarouselHandler.setActiveIndex($avtiveItem.data("to"));
-        $('.svt234Page').addClass("splashHide");
+        $('.svt234Page').addClass("splashHide hidden");
         VideoCarouselHandler.showView();
 
-      }).on('click', '.close-view', this.hideInfo);
+      }).on('click', '.close-view', this.hideInfo);*/
 
       /*$(window).on("resize", function() {
         var activeItem = self.getActiveItem();
@@ -193,12 +219,14 @@ var PlaylistHandler = {
         return this.$container.find('.epg__item:eq(' + activeIndex + ')').after(html).next();
     },
     setActiveItem: function(index) {
-      this.$container.find('.epg__item.active').removeClass('active');
+      this.$container.find('.epg__item').removeClass('active').find('.progress').addClass('hidden');
       this.centerScroller(this.$container.find('.epg__item:eq(' + index + ')').addClass('active'));
-      this.setBigPoster();
+      this.setBigPoster(this.getActiveItem());
+      this._setProgress();
+      this.getActiveItem().find('.progress').removeClass('hidden');
     },
-    setBigPoster: function() {
-      $(".svt234InfoContainer").css("background-image", "url('/img/alts/large/" + this.getActiveItem().data("uniqueid") + ".jpg')");
+    setBigPoster: function($item) {
+      $(".svt234InfoContainer").css("background-image", "url('/img/alts/large/" + $item.data("uniqueid") + ".jpg')");
     },
     getActiveItem: function() {
         return this.$container.find('.epg__item.active');
@@ -215,9 +243,9 @@ var PlaylistHandler = {
             centerScrollPoint = ( epg.width() / 2 ) - ( $item.width() / 2 );
 
         $(".now-playing").addClass('playhide')[0].offsetWidth;
-        
+
         epg.scrollTo( $item , 250, {axis:'x',offset: - centerScrollPoint, onAfter: function() {
-          $(".now-playing").css('left', $item.offset().left + ($item.width() / 2 - $(".now-playing").width() / 2) + "px").removeClass('playhide');
+          //$(".now-playing").css('left', $item.offset().left + ($item.width() / 2 - $(".now-playing").width() / 2) + "px").removeClass('playhide');
         }} );
       }
 
@@ -229,7 +257,14 @@ var PlaylistHandler = {
       container.removeClass('splashHide');
     },
     hideInfo: function() {
+      $('.epg__item.hover_click').removeClass('hover_click');
       $('.svt234-PlaylistInfo').addClass('splashHide');
+    },
+    _setProgress: function() {
+      var active = this.getActiveItem();
+      $('.epg__item .info').text('');
+      active.find('.info').text('nu');
+      active.next().find('.info').text('nästa program')[0].offsetWidth;
     },
     _updatePlaylist: function() {
       //if (this.width < 1)
@@ -237,7 +272,8 @@ var PlaylistHandler = {
 
       this.$container.find('.epg__list').width(this.width);
       this.centerScroller(this.getActiveItem());
-      this.setBigPoster();
+      this.setBigPoster(this.getActiveItem());
+      this._setProgress();
     },
     _updateIndex: function(startIndex) {
         this.$container.find('.epg__item:gt(' + startIndex + ')').each( function() {
@@ -268,7 +304,7 @@ var VideoCarouselHandler = {
     },
     _bindEvents: function() {
       var self = this;
-      $(".svt234-VideoControlls .video-close").on("click", function() {
+      $(".svt234-Close .video-close").on("click", function() {
         self.closeVideo();
         return false;
       });
@@ -290,6 +326,7 @@ var VideoCarouselHandler = {
     showView: function() {
       $('.svt234-MainVideo').addClass('splashHide').removeClass('hidden')[0].offsetWidth;
       $('.svt234-MainVideo').removeClass('splashHide');
+      playVideo(this.$container.find('.item.active'));
     },
     startVideo: function(index) {
 

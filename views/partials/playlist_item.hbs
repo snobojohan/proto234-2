@@ -1,13 +1,26 @@
 <li data-to="{{@index}}" data-uniqueid="{{uniqueid}}" class="epg__item{{#if startpoint}} active{{/if}}">
+	<div class="progress hidden">
+		<div class="progress-bar" role="progressbar" style="width:30%;"></div>
+	</div>
 	<div class="media">
-		  <span class="info">{{#if startpoint}}nu{{/if}}</span>
+		  <span class="info"></span>
 	      <a class="fixed-square-xs" href="#">
-	      	<img class="media-object img-responsive hidden" src="/img/playlist-play.png" alt="...">
+	      	<img class="media-object img-responsive playoverlay" src="/img/playlist-play-big.png" alt="...">
 	        <img class="media-object img-responsive round" src="/img/alts/square/{{uniqueid}}.jpg" alt="...">
 	      </a>
           <div class="media-body">
             <h5 class="media-heading">{{programmetitle}}</h5>
             <p class="text-meta">{{episodetitle}}</p>
           </div>
+
+
      </div>
+     <div class="title-info hideit">
+      	<span class="category">Svensk underhållning</span>
+      	<span class="episode">
+      		{{truncate description 150}}
+      	</span>
+      	<span class="episode-info"><b>Längd:</b> {{length}} min</span>
+      	<span class="episode-info"><b>Tillgängligt:</b> {{random_number 2 30}} dagar kvar</span>
+      </div>
 </li>

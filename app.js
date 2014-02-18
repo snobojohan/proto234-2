@@ -9,7 +9,7 @@ var 	express = require('express')
 	,	http = require('http')
     ,   fs = require('fs')
     ,   cors = require('cors')
-//	,	path = require('path')
+	,	path = require('path')
 //	,	fs = require('fs')
 	/*,	dirty = require('dirty')*/;
 
@@ -56,8 +56,24 @@ hbs.registerHelper('template_include', function(name) {
     return file.replace("{{@", "{{");
 });
 
-hbs.registerHelper('random_list', function(context) {
+hbs.registerHelper('random_number', function(min, max) {
+    return Math.floor(Math.random()*max) + min;
+});
 
+hbs.registerHelper ('truncate', function (str, len) {
+    if (str.length == 0) {
+        str = "Programbeskrivning saknas";
+    }
+
+    if (str.length > len && str.length > 0) {
+        var new_str = str + " ";
+        new_str = str.substr (0, len);
+        new_str = str.substr (0, new_str.lastIndexOf(" "));
+        new_str = (new_str.length > 0) ? new_str : str.substr (0, len);
+
+        return new hbs.SafeString ( new_str +'...' );
+    }
+    return str;
 });
 
 app.use(express.favicon(__dirname + '/public/img/favicon.ico'));
@@ -73,7 +89,12 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.compress());
+app.use('/img', static('/public/img', 86400000 ));
+app.use('/', static('/public', 0));
+//app.use('/', express.static(__dirname + '/public', { maxAge: 86400000 /* 1d */ }));
+
+//app.use(express.static(app.root + '/public/img', ));
 
 // development only
 if ('development' == app.get('env')) {
@@ -155,3 +176,7 @@ app.use(function(req, res, next){
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+function static(dirname, age) {
+    return express.static(path.join(__dirname, dirname), { maxAge: age });
+}

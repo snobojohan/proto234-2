@@ -16,7 +16,12 @@
 	<nav class="navbar navbar-default navbar--tabla" role="navigation">
 	  <div class="svt234Content">
 	    <div class="inner-header">
-	    	<img src="/img/topbar.png" alt="" style="margin-top:6px;" />
+	    	<img src="/img/topbar.png" alt="" style="margin-top:6px; float:left;" />
+
+	    	<div class="search">
+	    		<span class="fa fa-search"></span>
+	    		<input type="input" role="search" placeholder="sök" />
+	    	</div>
 	    </div>
 	  </div>
 	</nav>
@@ -28,7 +33,7 @@
 	</div-->
 
 	<!-- PLAYLIST -->
-	<div class="svt234Container svt234InfoContainer" style="position: relative">
+	<div class="svt234Container svt234InfoContainer">
 	  <div class="epg-arrows">
 	      <a href="#" class="left jsScrollLeft"><i class="fa fa-angle-left fa-5x"></i></a>
 	      <a href="#" class="right jsScrollRight"><i class="fa fa-angle-right fa-5x"></i></a>
@@ -48,7 +53,7 @@
 
 	  </div>
 
-	  <div class="svt234-PlaylistInfo splashHide">
+	  <!--div class="svt234-PlaylistInfo splashHide">
 	  	<div class="innerInfo">
 	  		<h3>Jills Veranda</h3>
 	  		<span class="category">underhållning</span>
@@ -61,7 +66,7 @@
 	  	<a class="close-view text-hide">
 			Stäng
 		</a>
-	  </div>
+	  </div-->
 	</div>
 
 	<div class="svt234-middle">
@@ -69,7 +74,7 @@
 	</div>
 
 	<!-- KATEGORIER -->
-	<div class="svt234Content svt234-Categorys">
+	<!--div class="svt234Content svt234-Categorys">
 		<div class="category-wrapper">
 			<h3>Kategorikanaler</h3>
 			<ul class="list-inline">
@@ -84,7 +89,7 @@
 				</li>
 			</ul>
 		</div>
-	</div>
+	</div-->
 
 	<div class="dummy-bottom">
 		<img src="/img/dummy-recommend.png" alt="" />
@@ -112,8 +117,11 @@
 	</div>
 
 	<!-- CONTROLS -->
-	<div class="svt234-Overlay svt234-VideoControlls">
+	<div class="svt234-Overlay svt234-Close">
 		<a href="#" class="text-hide video-close">Stäng</a>
+	</div>
+	<div class="svt234-Overlay svt234-VideoControlls">
+
 		<a href="#carousel-example-generic" class="video-next" data-slide="next">
 			<span class="next-title"></span>
 			<span class="next-episode"></span>
