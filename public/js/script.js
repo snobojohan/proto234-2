@@ -219,7 +219,7 @@ var PlaylistHandler = {
         return this.$container.find('.epg__item:eq(' + activeIndex + ')').after(html).next();
     },
     setActiveItem: function(index) {
-      this.$container.find('.epg__item.active').removeClass('active').find('.progress').addClass('hidden');
+      this.$container.find('.epg__item').removeClass('active').find('.progress').addClass('hidden');
       this.centerScroller(this.$container.find('.epg__item:eq(' + index + ')').addClass('active'));
       this.setBigPoster(this.getActiveItem());
       this._setProgress();
