@@ -829,9 +829,17 @@ a.no-underline:hover {
     .media {
     	position: relative;
     	z-index: 10;
-    	background-color: #f7f6f0;
+    	background-color: #f2f0e6;
     	margin: 0;
     	padding: 8px 12px;
+
+    	&:first-child {
+    		padding-left: 40px;
+    	}
+
+    	&:last-child {
+    		padding-right: 40px;
+    	}
     }
 
     .media-body {
@@ -849,11 +857,11 @@ a.no-underline:hover {
     }
 
     &:first-child {
-    	padding-left: 40px;
+    	//padding-left: 40px;
     }
 
     &:last-child {
-    	padding-right: 40px;
+    	//padding-right: 40px;
     }
 
     .hideit {
