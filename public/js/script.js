@@ -152,39 +152,50 @@ var PlaylistHandler = {
          PlaylistHandler.centerScroller(self.$container.find('.epg__item').closestToOffset({top: 0, left: self.$container.width()/2}).next());
       });
 
-      this.$container.on('click', '.epg__item', function(e) {
+      this.$container.on('click', '.epg__item .fixed-square-xs', function(e) {
         //self.setActiveItem($(this).data("to"));
         var $obj = $(this),
             to = $('.epg__item.hover_click')[0] === $obj[0] ? 0 : 500;
 
+        //var $avtiveItem = self.$container.find('.epg__item:eq(' + $obj.data("to") + ')');//self.getActiveItem();
+        VideoCarouselHandler.setActiveIndex($obj.closest('.epg__item').data("to"));
+        $('.svt234Page').addClass("splashHide hidden");
+        VideoCarouselHandler.showView();
+
         //console.log(($('.epg__item.hover_click')[0] == $obj[0]), ($('.epg__item.hover_click')[0] === $obj[0]), $obj[0], $('.epg__item.hover_click')[0])
-        $('.epg__item.hover_click').removeClass('hover_click');
-        $('.svt234-PlaylistInfo').data("index", $obj.data("to"));
-        self.showInfo($obj);
-        self.setBigPoster($obj);
-        self.centerScroller($obj);
+        //$('.epg__item.hover_click').removeClass('hover_click');
+        //$('.svt234-PlaylistInfo').data("index", $obj.data("to"));
+        //self.showInfo($obj);
+        //self.setBigPoster($obj);
+        //self.centerScroller($obj);
 
-        $obj.addClass('hover_click');
+        //$obj.addClass('hover_click');
 
-        if (e.target.className == "fixed-square-xs") {
+        /*if (e.target.className == "fixed-square-xs") {
 
           setTimeout(function() {
-            $('.epg__item.hover_click').removeClass('hover_click');
+            //$('.epg__item.hover_click').removeClass('hover_click');
             $('.svt234-PlaylistInfo .watch').trigger('click');
           }, to);
-        }
+        }*/
         e.preventDefault();
+      }).find('.epg__item').hover( function() {
+          $(this).css('padding-bottom', ($(this).find('.title-info').height() + 32) + "px");
+          self.setBigPoster($(this));
+      }, function() {
+        $(this).css('padding-bottom', '');
+        self.setBigPoster(self.getActiveItem());
       });
 
 
-      $('.svt234-PlaylistInfo').on('click', '.watch', function() {
+      /*$('.svt234-PlaylistInfo').on('click', '.watch', function() {
 
         var $avtiveItem = self.$container.find('.epg__item:eq(' + $('.svt234-PlaylistInfo').data("index") + ')');//self.getActiveItem();
         VideoCarouselHandler.setActiveIndex($avtiveItem.data("to"));
         $('.svt234Page').addClass("splashHide hidden");
         VideoCarouselHandler.showView();
 
-      }).on('click', '.close-view', this.hideInfo);
+      }).on('click', '.close-view', this.hideInfo);*/
 
       /*$(window).on("resize", function() {
         var activeItem = self.getActiveItem();
@@ -231,9 +242,9 @@ var PlaylistHandler = {
         var epg = $("#epg"),
             centerScrollPoint = ( epg.width() / 2 ) - ( $item.width() / 2 );
 
-        $(".now-playing").addClass('playhide')[0].offsetWidth;
+        //$(".now-playing").addClass('playhide')[0].offsetWidth;
         epg.scrollTo( $item , 250, {axis:'x',offset: - centerScrollPoint, onAfter: function() {
-          $(".now-playing").css('left', $item.offset().left + ($item.width() / 2 - $(".now-playing").width() / 2) + "px").removeClass('playhide');
+          //$(".now-playing").css('left', $item.offset().left + ($item.width() / 2 - $(".now-playing").width() / 2) + "px").removeClass('playhide');
         }} );
 
 

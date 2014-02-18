@@ -49,8 +49,24 @@ hbs.registerHelper('template_include', function(name) {
     return file.replace("{{@", "{{");
 });
 
-hbs.registerHelper('random_list', function(context) {
+hbs.registerHelper('random_number', function(min, max) {
+    return Math.floor(Math.random()*max) + min;
+});
 
+hbs.registerHelper ('truncate', function (str, len) {
+    if (str.length == 0) {
+        str = "Programbeskrivning saknas";
+    }
+
+    if (str.length > len && str.length > 0) {
+        var new_str = str + " ";
+        new_str = str.substr (0, len);
+        new_str = str.substr (0, new_str.lastIndexOf(" "));
+        new_str = (new_str.length > 0) ? new_str : str.substr (0, len);
+
+        return new hbs.SafeString ( new_str +'...' );
+    }
+    return str;
 });
 
 app.use(express.favicon(__dirname + '/public/img/favicon.ico'));
