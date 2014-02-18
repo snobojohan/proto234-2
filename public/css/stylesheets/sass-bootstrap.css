@@ -6826,7 +6826,6 @@ a.no-underline:hover {
     text-align: center;
     min-width: 200px;
     float: left;
-    border-right: 2px solid #fdfbed;
     cursor: pointer;
     /*&:before,
     &:after {
@@ -6877,7 +6876,7 @@ a.no-underline:hover {
       outline-offset: -2px; }
     /* line 789, ../sass/_theme-style.scss */
     .epg .epg__item:hover, .epg .epg__item:focus {
-      background-color: #deefeb;
+      background-color: rgba(222, 239, 235, 0.9);
       color: #333333;
       text-decoration: none;
       /*.fixed-square-xs::after {
@@ -6885,7 +6884,7 @@ a.no-underline:hover {
       }*/ }
       /* line 791, ../sass/_theme-style.scss */
       .epg .epg__item:hover .media, .epg .epg__item:focus .media {
-        background-color: #deefeb; }
+        background-color: rgba(222, 239, 235, 0.9); }
       /* line 797, ../sass/_theme-style.scss */
       .epg .epg__item:hover .fixed-square-xs, .epg .epg__item:focus .fixed-square-xs {
         width: 50px;
@@ -7004,13 +7003,13 @@ a.no-underline:hover {
     .epg .active:hover,
     .epg .epg_item.active:hover, .epg .epg__item.active:nth-child(odd):hover,
     .epg .epg__item.custom.active:hover {
-      background-color: #deefeb; }
+      background-color: rgba(222, 239, 235, 0.9); }
       /* line 928, ../sass/_theme-style.scss */
       .epg .epg__item--active:hover .media,
       .epg .active:hover .media,
       .epg .epg_item.active:hover .media, .epg .epg__item.active:nth-child(odd):hover .media,
       .epg .epg__item.custom.active:hover .media {
-        background-color: #deefeb; }
+        background-color: rgba(222, 239, 235, 0.9); }
     /* line 937, ../sass/_theme-style.scss */
     .epg .epg__item--active .hidden,
     .epg .active .hidden,

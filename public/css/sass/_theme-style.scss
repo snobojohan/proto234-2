@@ -727,7 +727,7 @@ a.no-underline:hover {
     //height: 65px;
     min-width: 200px;
     float: left;
-    border-right: 2px solid #fdfbed;
+    //border-right: 2px solid #fdfbed;
     //border-bottom: 1px solid $btn-default-border;
     //padding: 8px 12px 8px 12px;
     cursor: pointer;
@@ -789,9 +789,9 @@ a.no-underline:hover {
     &:focus {
 
 	     .media {
-	    	background-color: #deefeb;
+	    	background-color: $playlist-hover-bgcolor;
 	    }
-      background-color: #deefeb;
+      	background-color: $playlist-hover-bgcolor;
       color: $btn-default-color;
       text-decoration: none;
       .fixed-square-xs {
@@ -924,9 +924,9 @@ a.no-underline:hover {
     	 background-color: #fafaf8;
     }
     &:hover {
-      background-color: #deefeb;
+      background-color: $playlist-hover-bgcolor;
       .media {
-	    	 background-color: #deefeb;
+	    	 background-color: $playlist-hover-bgcolor;
 	    }
     }
     .media-heading {
