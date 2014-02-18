@@ -278,7 +278,8 @@ a.no-underline:hover {
 	}
 
 	.svt234InfoContainer {
-		@include transition(all 0.8s ease-in-out);
+		@include transition(background-image 0.8s ease-out);
+		position:relative;
 		background-size: cover;
 		min-height: 415px;
 		max-height: 415px;
