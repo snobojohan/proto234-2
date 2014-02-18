@@ -26,8 +26,6 @@ $.fn.closestToOffset = function(offset) {
     return el;
 };
 
-var $activeItem;
-
 function playVideo($obj){
 
             var theItem = $obj.closest( ".item" );
@@ -49,9 +47,6 @@ function playVideo($obj){
 }
 
 $(document).ready(function() {
-
-
-
   //SPLASH
   SplashHandler.init($('.svt234-Splash'));
   SplashHandler.show();
@@ -62,30 +57,10 @@ $(document).ready(function() {
   VideoCarouselHandler.init($('#carousel-example-generic'));
   setNextText();
 
-
-  // $(".video-wrapper").html( theIframe(1719847) );
-
-	// make it btn
-	$('.file-inputs').bootstrapFileInput();
-
-    $activeItem = $("#epg .active");
-
-    //centerScroller($activeItem);
-
-    /*$( "#epg" ).on('click', '.epg__item', function() {
-        $activeItem = $(this);
-        centerScroller($activeItem);
-    });*/
-
-    //$(".jsRelatedTitle").text( $("#carousel-example-generic .active").data("program") );
-
-
+    //carousel listeners
     $('#carousel-example-generic').on('slide.bs.carousel', function() {
         $('.svt234-More').addClass('hideview');
     }).on('slid.bs.carousel', function () {
-
-        console.log("SLIDING");
-
         VideoCarouselHandler.stopVideo();
 
         setNextText();
@@ -93,10 +68,6 @@ $(document).ready(function() {
         PlaylistHandler.setActiveItem(VideoCarouselHandler.getActiveIndex());
       	// wait
       	setTimeout(function() {
-      		// DO ALL THE OTHER STUFF!!!
-      		$activeItem = $("#epg .active");
-
-      		//centerScroller($activeItem);
 
           playVideo( $(".item.active") );
 
@@ -147,7 +118,9 @@ var SplashHandler = {
     hide: function() {
       var self = this;
       this.$container.one(this.TRANSITION_END, function(e) {
+          //$('.svt234Page').removeClass('splashHide hidden')[0].offsetWidth;
           $('.svt234-MainVideo').removeClass('splashHide')[0].offsetWidth;
+          PlaylistHandler._updatePlaylist();
           if (self.autoStart)
             VideoCarouselHandler.startVideo();
       }).addClass("splashHide");
@@ -182,17 +155,21 @@ var PlaylistHandler = {
       });
 
       this.$container.on('click', '.epg__item', function(e) {
-        self.setActiveItem($(this).data("to"));
+        //self.setActiveItem($(this).data("to"));
+        $('.svt234-PlaylistInfo').data("index", $(this).data("to"));
+        self.showInfo($(this));
         e.preventDefault();
       });
 
+
       $('.svt234-PlaylistInfo').on('click', '.watch', function() {
-        var $avtiveItem = self.getActiveItem();
+
+        var $avtiveItem = self.$container.find('.epg__item:eq(' + $('.svt234-PlaylistInfo').data("index") + ')');//self.getActiveItem();
         VideoCarouselHandler.setActiveIndex($avtiveItem.data("to"));
-       $('.svt234Page').addClass("splashHide");
+        $('.svt234Page').addClass("splashHide");
         VideoCarouselHandler.showView();
 
-      });
+      }).on('click', '.close-view', this.hideInfo);
 
       /*$(window).on("resize", function() {
         var activeItem = self.getActiveItem();
@@ -218,6 +195,10 @@ var PlaylistHandler = {
     setActiveItem: function(index) {
       this.$container.find('.epg__item.active').removeClass('active');
       this.centerScroller(this.$container.find('.epg__item:eq(' + index + ')').addClass('active'));
+      this.setBigPoster();
+    },
+    setBigPoster: function() {
+      $(".svt234InfoContainer").css("background-image", "url('/img/alts/large/" + this.getActiveItem().data("uniqueid") + ".jpg')");
     },
     getActiveItem: function() {
         return this.$container.find('.epg__item.active');
@@ -236,19 +217,27 @@ var PlaylistHandler = {
         $(".now-playing").addClass('playhide')[0].offsetWidth;
         
         epg.scrollTo( $item , 250, {axis:'x',offset: - centerScrollPoint, onAfter: function() {
-          console.log($item.offset());
           $(".now-playing").css('left', $item.offset().left + ($item.width() / 2 - $(".now-playing").width() / 2) + "px").removeClass('playhide');
         }} );
       }
 
     },
-
+    showInfo: function($item) {
+      var title = $item.find('.media-heading').text(),
+          container = $('.svt234-PlaylistInfo');
+      container.find('h3').text(title);
+      container.removeClass('splashHide');
+    },
+    hideInfo: function() {
+      $('.svt234-PlaylistInfo').addClass('splashHide');
+    },
     _updatePlaylist: function() {
       //if (this.width < 1)
       this._calculateWidth();
 
       this.$container.find('.epg__list').width(this.width);
       this.centerScroller(this.getActiveItem());
+      this.setBigPoster();
     },
     _updateIndex: function(startIndex) {
         this.$container.find('.epg__item:gt(' + startIndex + ')').each( function() {

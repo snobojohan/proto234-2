@@ -1,7 +1,8 @@
-<li data-to="{{@index}}"
-	class="epg__item{{#if startpoint}} active{{/if}}">
+<li data-to="{{@index}}" data-uniqueid="{{uniqueid}}" class="epg__item{{#if startpoint}} active{{/if}}">
 	<div class="media">
-	      <a class="pull-left fixed-square-xs" href="#">
+		  <span class="info">{{#if startpoint}}nu{{/if}}</span>
+	      <a class="fixed-square-xs" href="#">
+	      	<img class="media-object img-responsive hidden" src="/img/playlist-play.png" alt="...">
 	        <img class="media-object img-responsive round" src="/img/alts/square/{{uniqueid}}.jpg" alt="...">
 	      </a>
           <div class="media-body">
