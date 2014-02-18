@@ -10,7 +10,7 @@ body {
 	padding: 0; // 60px 0;
 	background-color: #fdfbed;
 }
- 
+
 body.framer {
 	background-image: url("/img/bg-framer.png");
 	background-repeat:repeat-x;
@@ -892,6 +892,13 @@ a.no-underline:hover {
 			display: block;
 			font-size: 12px;
 			color: #5c5c5c;
+		}
+
+		.see-more {
+			text-align: left;
+			display: block;
+			font-size: 12px;
+			margin-top: 8px;
 		}
     }
   }
