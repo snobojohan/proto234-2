@@ -722,16 +722,16 @@ a.no-underline:hover {
   	@include transition(padding-bottom 0.1s ease-in-out);
   	position: relative;
     list-style: none;
-    background-color: #f7f6f0;
+    background-color: #f2f0e6;
     display: block;
     text-align: center;
     //height: 65px;
     min-width: 200px;
     float: left;
-    //border-right: 2px solid #fdfbed;
+   	border-right: 2px solid #fdfbed;
     //border-bottom: 1px solid $btn-default-border;
     //padding: 8px 12px 8px 12px;
-    cursor: pointer;
+    //cursor: pointer;
 
     //box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 
@@ -779,7 +779,7 @@ a.no-underline:hover {
 	}
     &:nth-child(odd),
      &:nth-child(odd) .media {
-    	background: #f5f4ec;
+    	//background: #f5f4ec;
     }
 
     &:focus {
@@ -934,6 +934,7 @@ a.no-underline:hover {
     }
     .round {
     	//display: none;
+    	border: 2px solid #35d8da;
     }
     .hidden {
     	display: block!important;
@@ -1146,6 +1147,11 @@ blockquote p {
 
 
 		}
+	}
+
+	.menu {
+		float: left;
+		margin-top: 6px;
 	}
 }
 
