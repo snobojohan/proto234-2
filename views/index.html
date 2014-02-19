@@ -18,10 +18,30 @@
 	    <div class="inner-header">
 	    	<!--img src="/img/topbar.png" alt="" style="margin-top:6px; float:left;" /-->
 	    	<div class="menu">
+
 	    		<ul class="list-unstyled list-inline">
-	    			<li>Titta</li>
-	    			<li>Upptäck</li>
+	    			<li class="active">
+	    				<div class="btn-group">
+						  <button type="button" class="btn btn-menu">Titta</button>
+						  <button type="button" class="btn btn-menu dropdown-toggle" data-toggle="dropdown">Dagens tablå
+						    <i class="fa fa-caret-down"></i>
+						    <span class="sr-only">Toggle Dropdown</span>
+						  </button>
+						  <ul id="jsShowDay" class="dropdown-menu">
+						      <li><a href="#">Måndag</a></li>
+					          <li><a href="#">Tisdag</a></li>
+					          <li><a href="#">Igår</a></li>
+					          <li class="active"><a href="#">Idag</a></li>
+					          <li><a href="#">I morgon</a></li>
+					          <li><a href="#">Lördag</a></li>
+					          <li><a href="#">Söndag</a></li>
+						  </ul>
+						</div>
+	    			</li>
+	    			<li><a class="btn btn-menu">Hitta</a></button></li>
+	    			<li><a class="btn btn-menu">Upptäck</a></button></li>
 	    		</ul>
+
 	    	</div>
 
 	    	<div class="search">
@@ -32,6 +52,32 @@
 	  </div>
 	</nav>
 
+	<div id="days">
+		<div class="days-list">
+			<ul class="list-unstyled list-inline">
+	          <!--<li class="heading">Tablå</li>-->
+	          <li><a href="#">Måndag</a></li>
+	          <li><a href="#">Tisdag</a></li>
+	          <li><a href="#">Igår</a></li>
+	          <li class="active"><a href="#">Idag</a></li>
+	          <li><a href="#">I morgon</a></li>
+	          <li><a href="#">Lördag</a></li>
+	          <li><a href="#">Söndag</a></li>
+	          <li class="dropdown">
+	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Välj datum <b class="caret"></b></a>
+	            <ul class="dropdown-menu">
+	              <li><a href="#">Lördag 25 jan</a></li>
+	              <li><a href="#">Söndag 26 jan</a></li>
+	              <li><a href="#">Måndag 27 jan</a></li>
+	              <li><a href="#">Tisdag 28 jan</a></li>
+	              <li><a href="#">Onsdag 29 jan</a></li>
+	              <li class="divider"></li>
+	              <li><a href="#">Hitta program</a></li>
+	            </ul>
+	          </li>
+	        </ul>
+        </div>
+    </div>
 	<!-- INFO -->
 	<!--div class="svt234-Info">
 		<img class="svt234-logo" src="/img/logo-page.png" alt="" />
@@ -39,42 +85,44 @@
 	</div-->
 
 	<!-- PLAYLIST -->
-	<div class="svt234Container svt234InfoContainer">
-	  <div class="epg-arrows">
-	      <a href="#" class="left jsScrollLeft"><i class="fa fa-angle-left fa-5x"></i></a>
-	      <a href="#" class="right jsScrollRight"><i class="fa fa-angle-right fa-5x"></i></a>
-	  </div>
+	<div class="fulwrapper">
+		<div class="svt234Container svt234InfoContainer">
+		  <div class="epg-arrows">
+		      <a href="#" class="left jsScrollLeft"><i class="fa fa-angle-left fa-5x"></i></a>
+		      <a href="#" class="right jsScrollRight"><i class="fa fa-angle-right fa-5x"></i></a>
+		  </div>
 
-	 <div class="now-playing">
-     	Nu spelas
-     </div>
+		 <div class="now-playing">
+	     	Nu spelas
+	     </div>
 
-	  <div id="epg" class="epg">
+		  <div id="epg" class="epg">
 
-	  	<ol class="carousel-indicators epg__list">
-	  	{{#each videos}}
-	        {{> playlist_item }}
-	  	{{/each}}
-	  	</ol>
+		  	<ol class="carousel-indicators epg__list">
+		  	{{#each videos}}
+		        {{> playlist_item }}
+		  	{{/each}}
+		  	</ol>
 
-	  </div>
+		  </div>
 
-	  <!--div class="svt234-PlaylistInfo splashHide">
-	  	<div class="innerInfo">
-	  		<h3>Jills Veranda</h3>
-	  		<span class="category">underhållning</span>
-	  		<p class="title-info">
-	  			Svensk dramathriller som följer några människor vars liv förändras dramatiskt av den nya generationen robotar – hubotarna.
-	  		</p>
-	  		<button type="button" class="watch">spela</button>
-	  	</div>
+		  <!--div class="svt234-PlaylistInfo splashHide">
+		  	<div class="innerInfo">
+		  		<h3>Jills Veranda</h3>
+		  		<span class="category">underhållning</span>
+		  		<p class="title-info">
+		  			Svensk dramathriller som följer några människor vars liv förändras dramatiskt av den nya generationen robotar – hubotarna.
+		  		</p>
+		  		<button type="button" class="watch">spela</button>
+		  	</div>
 
-	  	<a class="close-view text-hide">
-			Stäng
-		</a>
-	  </div-->
+		  	<a class="close-view text-hide">
+				Stäng
+			</a>
+		  </div-->
+		</div>
 	</div>
-
+	
 	<div class="svt234-middle">
 		<img class="svt234-logo" src="/img/logo-page.png" alt="" />
 	</div>

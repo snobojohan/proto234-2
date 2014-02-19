@@ -51,6 +51,8 @@ $(document).ready(function() {
   SplashHandler.init($('.svt234-Splash'));
   SplashHandler.show();
 
+  DayChooser.init();
+
   //INIT RECOMMEND LIST
   PlaylistHandler.init($("#epg"));
   //RecommendHandler.init($('#recommend-list'));
@@ -97,7 +99,44 @@ $(document).ready(function() {
 
 });
 
+var DayChooser = {
+  init: function() {
+    this.$list = $("#jsShowDay");
+    this.bindEvents(); 
+  },
+  bindEvents: function() {
+    var self = this;
+    var $container = $(".svt234InfoContainer");
+    var bgimg;
+    var $parent;
+    
+    this.$list.find("a").on('click', function(e) {
+
+      self.$list.find(".active").removeClass("active");
+
+      $parent = $(this).parent("li");
+      console.log( $parent );
+
+      $parent.addClass("active");
+
+      console.log(  $container.css("background-image") );
+
+      bgimg =  $container.css("background-image")
+
+      if($(this).text() != "Idag"){
+        $('#epg').addClass("epg--otherday");
+        $container.css("background-image", "none");
+      } else {
+        $('#epg').removeClass("epg--otherday");
+        $container.css("background-image", "url('/img/alts/large/" + $item.data("uniqueid") + ".jpg')");
+      }
+      
+    });
+  }
+}
+
 var SplashHandler = {
+
     TRANSITION_END : "webkitTransitionEnd transitionend oTransitionEnd otransitionend",
 
     init: function($container) {
