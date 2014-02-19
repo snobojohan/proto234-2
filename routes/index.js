@@ -22,36 +22,11 @@ exports.index = function (req, res) {
 
 };
 
-exports.framer = function (req, res) {
-
-	res.render('framer', { title: 'Framer', framer: 'true' } );
-
-}
-exports.framed = function (req, res) {
-	// res.render('frame',{ title: 'Frame inner', framed: 'true' });
-
-	// VIDEOS from database
-	data.getDbVideos(function(err,theData){
-
-		  	 	if (err){
-
-		  			console.log("ERROR : " + err);
-		  			// TODO: handle Error
-
-		  		} else {
-
-		  	 		// console.log(theData);
-		  	 		theData.framed = 'true';
-
-		  	 		console.log("------------------------------ x -");
-		  	 		console.log(theData);
-		  	 		console.log("------------------------------ y -");
-
-		  	 		res.render('index',theData);
-
-		  	 	}
-
-		  	});
+exports.slider = function (req, res) {
+	res.render(	
+		'slider', 
+		{ title: 'Vi tror du gillar', layout : 'layout-betasvtplay' }
+	);
 }
 
 exports.test = function (req, res) {
