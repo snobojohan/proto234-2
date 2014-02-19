@@ -733,6 +733,7 @@ a.no-underline:hover {
 	}
 
 	.progress-bar {
+		@include transition(none);
 		background-color: #94e7e1;
 		-webkit-box-shadow: none;
 		box-shadow: none;

@@ -224,9 +224,8 @@ var PlaylistHandler = {
       this.setBigPoster(this.getActiveItem());
       this._setProgress();
       this.getActiveItem().find('.progress').removeClass('hidden');
-      this._calculateWidth();
-      console.log(this);
-      this.$container.find('.main-progress .progress-bar').width(this.beforeActiveWidth);
+      //this._calculateProgress();
+
     },
     setBigPoster: function($item) {
       $(".svt234InfoContainer").css("background-image", "url('/img/alts/large/" + $item.data("uniqueid") + ".jpg')");
@@ -272,6 +271,7 @@ var PlaylistHandler = {
     _updatePlaylist: function() {
       //if (this.width < 1)
       this._calculateWidth();
+      this._calculateProgress();
 
       this.$container.find('.epg__list').width(this.width);
       this.centerScroller(this.getActiveItem());
@@ -284,24 +284,25 @@ var PlaylistHandler = {
             obj.attr("data-slide-to", parseInt(obj.attr("data-slide-to")) + 1);
         });
     },
+    _calculateProgress: function() {
+      var  beforeActiveWidth = 0;
+      this.$container.find('.epg__item:lt(' + this.$container.find('.epg__item.active').index() + ')').each(function() {
+          beforeActiveWidth += $(this).outerWidth();
+          console.log($(this).outerWidth(), $(this).width());
+      });
+      this.beforeActiveWidth = beforeActiveWidth;
+      this.$container.find('.main-progress .progress-bar').width(this.beforeActiveWidth);
+    },
     _calculateWidth: function() {
       //SET WIDTH
-        var width = 0,
-            beforeActiveWidth = 0,
-            activeFound = false;
+        var width = 0;
         this.$container.find('.epg__item').each(function() {
           //console.log('$(this).outerWidth()', $(this).outerWidth());
           width += $(this).outerWidth();
 
-          if ($(this).hasClass('active'))
-            activeFound = true;
-
-          if (!activeFound)
-            beforeActiveWidth = width;
-
         });
         this.width = width < 1 ? 10000 : width;
-        this.beforeActiveWidth = beforeActiveWidth;
+
     },
 };
 
