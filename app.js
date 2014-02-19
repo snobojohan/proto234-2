@@ -45,7 +45,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'html');
 app.engine('html', hbs.__express);
 
-hbs.registerPartials(__dirname + '/views/partials');
+hbs.registerPartials(__dirname + '/views/partials/');
 
 hbs.registerHelper("epgwidth", function(lngt){
     return Math.max(190, lngt * 8);
@@ -105,16 +105,15 @@ if ('development' == app.get('env')) {
 // Routing
 ////////////////////////////////////////
 app.get('/', routes.index );
+
 app.get('/test', routes.test );
 
-app.get('/framer', routes.framer );
+app.get('/slider', routes.slider );
 
-app.get('/framed', routes.framed );
 app.get('/newvideo', routes.newvideo );
+
 // Post videos
-
 app.post('/addvideo', routes.addvideo );
-
 
 
 /*app.post('/addvideo', function (req, res) {
