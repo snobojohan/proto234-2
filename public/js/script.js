@@ -224,6 +224,9 @@ var PlaylistHandler = {
       this.setBigPoster(this.getActiveItem());
       this._setProgress();
       this.getActiveItem().find('.progress').removeClass('hidden');
+      this._calculateWidth();
+      console.log(this);
+      this.$container.find('.main-progress .progress-bar').width(this.beforeActiveWidth);
     },
     setBigPoster: function($item) {
       $(".svt234InfoContainer").css("background-image", "url('/img/alts/large/" + $item.data("uniqueid") + ".jpg')");
@@ -283,13 +286,22 @@ var PlaylistHandler = {
     },
     _calculateWidth: function() {
       //SET WIDTH
-        var width = 0;
+        var width = 0,
+            beforeActiveWidth = 0,
+            activeFound = false;
         this.$container.find('.epg__item').each(function() {
           //console.log('$(this).outerWidth()', $(this).outerWidth());
           width += $(this).outerWidth();
 
+          if ($(this).hasClass('active'))
+            activeFound = true;
+
+          if (!activeFound)
+            beforeActiveWidth = width;
+
         });
         this.width = width < 1 ? 10000 : width;
+        this.beforeActiveWidth = beforeActiveWidth;
     },
 };
 
