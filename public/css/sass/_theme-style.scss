@@ -314,7 +314,7 @@ a.no-underline:hover {
 			cursor: pointer;
 		}
 	}
-
+	// För att visa annan dag
 	.fulwrapper {
 		background: transparent url("/img/otherday.png") no-repeat center top;
 	}
@@ -802,6 +802,25 @@ a.no-underline:hover {
     padding: 0;
   }
 
+  .progress {
+		position: absolute;
+		top:0;
+		left: 0;
+		z-index: 100;
+
+		height: 5px;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+		border-radius: 0;
+	}
+
+	.progress-bar {
+		@include transition(none);
+		background-color: #94e7e1;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+
   .epg__item {
   	@include transition(padding-bottom 0.1s ease-in-out);
   	position: relative;
@@ -844,23 +863,14 @@ a.no-underline:hover {
 	}*/
 
 	.progress {
-		position: absolute;
-		top:0;
-		left: 0;
 		width: 100%;
 		z-index: 50;
-
-		height: 5px;
-		-webkit-box-shadow: none;
-		box-shadow: none;
-		border-radius: 0;
 	}
 
 	.progress-bar {
 		background-color: #35d8da;
-		-webkit-box-shadow: none;
-		box-shadow: none;
 	}
+
     &:nth-child(odd),
      &:nth-child(odd) .media {
     	//background: #f5f4ec;
