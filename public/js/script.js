@@ -128,7 +128,7 @@ var DayChooser = {
         $container.css("background-image", "none");
       } else {
         $('#epg').removeClass("epg--otherday");
-        $container.css("background-image", "url('/img/alts/large/" + $item.data("uniqueid") + ".jpg')");
+        $container.css("background-image", "url(" + bgImg + ")");
       }
       
     });

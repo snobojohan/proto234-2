@@ -9,16 +9,25 @@
 
 @import "font-awesome";
 
-	$body-bg:  #fdfbed;
-
-	$text-brown: #8c8973;
+$body-bg:  #fdfbed;
+$text-brown: #8c8973;
 
 @import "mixins";
 html {
 	body.beta-body {
+		margin: 0 !important;
+		padding: 0 !important;
 		background: $body-bg !important;
 	}
 	body {
+
+		&.beta-body {
+			.play-videolist-group {
+				margin: 0 !important;
+				padding: 0 !important;
+				border-bottom: none !important;
+			}
+		}
 
 
 		color: $text-color !important;
@@ -422,5 +431,23 @@ html {
 			margin-right: 0px !important;
 		}
 
+	}
+}
+
+#slide-wrapper {
+	width: 100%;
+	#news {
+		float: left;
+		padding-right: 15px;
+		width: 21%;
+		box-sizing:border-box;
+		-moz-box-sizing:border-box;
+	}
+	#slider {
+		float: right;
+		width: 79%;
+	}
+	.container-inner {
+		padding: 2px 0;
 	}
 }
