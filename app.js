@@ -110,6 +110,8 @@ app.get('/test', routes.test );
 
 app.get('/slider', routes.slider );
 
+app.get('/google', routes.google );
+
 app.get('/newvideo', routes.newvideo );
 
 // Post videos
