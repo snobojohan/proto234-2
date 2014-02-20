@@ -47,9 +47,8 @@ function playVideo($obj){
 }
 
 $(document).ready(function() {
-  //SPLASH
-  SplashHandler.init($('.svt234-Splash'));
-  SplashHandler.show();
+
+
 
   DayChooser.init();
 
@@ -58,6 +57,14 @@ $(document).ready(function() {
   //RecommendHandler.init($('#recommend-list'));
   VideoCarouselHandler.init($('#carousel-example-generic'));
   setNextText();
+
+  //SPLASH
+    SplashHandler.init($('.svt234-Splash'));
+    if (window.location.search.substring(1).indexOf("video") > -1) {
+      SplashHandler.startVideo();
+    } else {
+      SplashHandler.show();
+    }
 
     //carousel listeners
     $('#carousel-example-generic').on('slide.bs.carousel', function() {
@@ -102,14 +109,14 @@ $(document).ready(function() {
 var DayChooser = {
   init: function() {
     this.$list = $("#jsShowDay");
-    this.bindEvents(); 
+    this.bindEvents();
   },
   bindEvents: function() {
     var self = this;
     var $container = $(".svt234InfoContainer");
     var bgimg;
     var $parent;
-    
+
     this.$list.find("a").on('click', function(e) {
 
       self.$list.find(".active").removeClass("active");
@@ -130,7 +137,7 @@ var DayChooser = {
         $('#epg').removeClass("epg--otherday");
         $container.css("background-image", "url(" + bgImg + ")");
       }
-      
+
     });
   }
 }
@@ -157,12 +164,15 @@ var SplashHandler = {
     hide: function() {
       var self = this;
       this.$container.one(this.TRANSITION_END, function(e) {
-          //$('.svt234Page').removeClass('splashHide hidden')[0].offsetWidth;
-          $('.svt234-MainVideo').removeClass('splashHide')[0].offsetWidth;
-          PlaylistHandler._updatePlaylist();
-          if (self.autoStart)
-            VideoCarouselHandler.startVideo();
+        self.startVideo();
       }).addClass("splashHide");
+    },
+    startVideo: function() {
+      //$('.svt234Page').removeClass('splashHide hidden')[0].offsetWidth;
+      $('.svt234-MainVideo').removeClass('splashHide')[0].offsetWidth;
+      PlaylistHandler._updatePlaylist();
+      if (this.autoStart)
+        VideoCarouselHandler.startVideo();
     },
     startLoader: function() {
       var self = this;
