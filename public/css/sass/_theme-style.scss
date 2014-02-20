@@ -10,7 +10,6 @@ body {
 	padding: 0; // 60px 0;
 	background-color: #fdfbed;
 }
-
 body.framer {
 	background-image: url("/img/bg-framer.png");
 	background-repeat:repeat-x;
@@ -128,10 +127,13 @@ a.no-underline:hover {
 	}
 }
 */
-.iframe-slider {
+.dummy-bottom {
 	width: 90%;
-	margin: 0 auto;
-	min-height: 290px;
+	margin: 0 auto 50px auto;
+}
+.iframe-slider {
+	width: 100%;
+	min-height: 210px;
 	overflow: hidden;
 }
 #days {
@@ -508,6 +510,7 @@ a.no-underline:hover {
 		}
 	}
 }
+
 .feature-arrows .video-next,
 .feature-arrows .video-prev {
 	width: 100%;
@@ -1395,7 +1398,23 @@ blockquote p {
 	font-weight: 200;
 	margin: 0 0 20px;
 }
-
+.play-h3  {
+			font-family: 'Helvetica Neue', Helvetica-, Arial, sans-serif;
+			font-weight: 200;
+			font-size: 20px;
+			color: $text-brown !important;
+		}
+.taglist {
+	font-size: 1.2em;
+	a span {
+		// HERE
+		color: #666;
+		border-bottom: 1px dotted $gray-light;
+	}
+	a:hover {
+			text-decoration: none !important;
+		}
+}
 
 //// Carousel ///
 html {

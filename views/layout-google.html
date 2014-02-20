@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>{{title}}</title>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+	    body {
+	    	margin: 0;
+	    	padding: 0;
+	    	background: #fff url('/img/google.jpg') no-repeat 0 0;
+	    	cursor: pointer;
+	    }
+    </style>
+    <script src="/js/libs/jquery.min.js"></script>
+    <script>
+
+    	$(function() {
+
+		  	// Handler for .ready() called.
+		  	$( window ).click(function(e) {
+				
+		  		document.location = '/' + window.location.search;
+				
+			});
+
+
+		});
+
+    </script>
+
+  </head>
+  <body>
+
+    {{{body}}}
+
+    
+  </body>
+</html>

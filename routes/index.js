@@ -19,7 +19,6 @@ exports.index = function (req, res) {
 		  	 	}
 
 		  	});
-
 };
 
 exports.slider = function (req, res) {
@@ -28,6 +27,21 @@ exports.slider = function (req, res) {
 		{ title: 'Vi tror du gillar', layout : 'layout-betasvtplay' }
 	);
 }
+exports.google = function (req, res) {
+
+	console.log("------------");
+
+	console.log(req.query.autostart);
+
+	console.log("------------");
+
+	res.render(	
+		'google', 
+		{ title: 'Google', thequery: req.query, layout : 'layout-google' }
+	);
+}
+
+// layout-google
 
 exports.test = function (req, res) {
 
