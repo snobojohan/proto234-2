@@ -179,9 +179,11 @@ var SplashHandler = {
         VideoCarouselHandler.startVideo();
     },
     startPage: function() {
+      $('.svt234-MainVideo').addClass('hidden');
       $('.svt234Page').removeClass('splashHide hidden')[0].offsetWidth;
       //$('.svt234-MainVideo').removeClass('splashHide')[0].offsetWidth;
       PlaylistHandler._updatePlaylist();
+      PlaylistHandler.centerScroller(PlaylistHandler.getActiveItem());
     },
     startLoader: function() {
       var self = this;
@@ -302,7 +304,7 @@ var PlaylistHandler = {
         var epg = $("#epg"),
             centerScrollPoint = ( epg.width() / 2 ) - ( $item.width() / 2 );
 
-        $(".now-playing").addClass('playhide')[0].offsetWidth;
+        //$(".now-playing").addClass('playhide')[0].offsetWidth;
 
         epg.scrollTo( $item , 250, {axis:'x',offset: - centerScrollPoint, onAfter: function() {
           //$(".now-playing").css('left', $item.offset().left + ($item.width() / 2 - $(".now-playing").width() / 2) + "px").removeClass('playhide');
