@@ -135,9 +135,11 @@ var DayChooser = {
       if($(this).text() != "Idag"){
         $('#epg').addClass("epg--otherday");
         $container.css("background-image", "none");
+        $('.main-progress').addClass('hidden');
       } else {
         $('#epg').removeClass("epg--otherday");
-        $container.css("background-image", "url(" + bgImg + ")");
+        $container.css("background-image", "url(" + bgimg + ")");
+        $('.main-progress').removeClass('hidden');
       }
 
     });
@@ -318,6 +320,7 @@ var PlaylistHandler = {
       $('.epg__item.hover_click').removeClass('hover_click');
       $('.svt234-PlaylistInfo').addClass('splashHide');
     },
+
     _setProgress: function() {
       var active = this.getActiveItem();
       $('.epg__item .info').text('');
