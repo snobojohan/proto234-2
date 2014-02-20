@@ -14,7 +14,7 @@ exports.index = function (req, res) {
 		  			console.log("ERROR : " + err);
 		  			// TODO: handle Error
 		  		} else {
-		  	 		// console.log(theData);
+		  			theData.query = req.query;
 		  	 		res.render('index',theData);
 		  	 	}
 
@@ -23,8 +23,8 @@ exports.index = function (req, res) {
 };
 
 exports.slider = function (req, res) {
-	res.render(	
-		'slider', 
+	res.render(
+		'slider',
 		{ title: 'Vi tror du gillar', layout : 'layout-betasvtplay' }
 	);
 }

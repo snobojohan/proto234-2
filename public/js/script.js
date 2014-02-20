@@ -40,7 +40,7 @@ function playVideo($obj){
     var theIframeVideo = iframeTemplate( {id: theId});
     theItem.append(theIframeVideo).css('background-image', 'none');
 
-    console.log('item',theItem);
+    console.log('item s',theItem);
 
     theItem.fitVids({ customSelector: "iframe[src^='http://www.svtplay.se']"});
 
@@ -67,6 +67,14 @@ $(document).ready(function() {
     } else {
       SplashHandler.show();
     }
+
+    $('.dummy-bottom .overlay').on('click', function(e) {
+      VideoCarouselHandler.addVideo($(this), VideoCarouselHandler.$videos.length - 1);
+      var last = VideoCarouselHandler.$container.find('.item').last();
+      VideoCarouselHandler.setActiveIndex(last.data("index"));
+      VideoCarouselHandler.showView(last);
+      e.preventDefault();
+    });
 
     //carousel listeners
     $('#carousel-example-generic').on('slide.bs.carousel', function() {
@@ -397,10 +405,13 @@ var VideoCarouselHandler = {
         });
 
     },
-    showView: function() {
+    showView: function($item) {
+      if (!$item)
+        $item = this.$container.find('.item.active');
+
       $('.svt234-MainVideo').addClass('splashHide').removeClass('hidden')[0].offsetWidth;
       $('.svt234-MainVideo').removeClass('splashHide');
-      playVideo(this.$container.find('.item.active'));
+      playVideo($item);
     },
     startVideo: function(index) {
 
@@ -436,11 +447,16 @@ var VideoCarouselHandler = {
                                   episodetitle:$item.data("episode")
                                 });
 
-        this._updateIndex(index);
-        this.$container.find('.item:eq(' + activeIndex + ')').after(html);
+          console.log(html);
+
+        this.$container.find('.item').last().after(html);
+        this._updateVideos();
+        //this._updateIndex(index);
+        //this.$container.find('.item:eq(' + activeIndex + ')').after(html);
     },
     setActiveIndex: function(index) {
       this.stopVideo();
+      console.log('index', index);
       this.$container.carousel(index);
     },
     getActiveIndex: function() {
@@ -485,7 +501,7 @@ var RecommendHandler = {
         // console.log("PLAY VIDEO: ", $item);
 
         var $activeElement = PlaylistHandler.getActiveItem();
-        PlaylistHandler.addToPlaylist($item);
+        //PlaylistHandler.addToPlaylist($item);
         VideoCarouselHandler.addVideo($item, parseInt($activeElement.attr("data-slide-to")) );
 
         //trigger click

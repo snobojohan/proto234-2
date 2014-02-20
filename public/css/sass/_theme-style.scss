@@ -432,16 +432,16 @@ a.no-underline:hover {
 	}
 }
 
-	%A_svt234-Controll {
-		width: 80px;
-		height: 80px;
-		background-color: #2d2d2d;
-		display: block;
-		overflow: hidden;
-		margin-bottom: 2px;
-		float: right;
-		clear: right;
-	}
+%A_svt234-Controll {
+	width: 80px;
+	height: 80px;
+	background-color: #2d2d2d;
+	display: block;
+	overflow: hidden;
+	margin-bottom: 2px;
+	float: right;
+	clear: right;
+}
 
 .svt234-VideoLogo {
 	right: 35px;
@@ -508,6 +508,10 @@ a.no-underline:hover {
 		}
 	}
 }
+.feature-arrows .video-next,
+.feature-arrows .video-prev {
+	width: 100%;
+}
 
 .svt234-VideoInfo {
 
@@ -565,9 +569,18 @@ a.no-underline:hover {
 }
 
 .dummy-bottom {
+	position: relative;
 	background: #fdfbed;
 	padding: 25px 0;
 
+	.overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 300px;
+		min-height: 200px;
+		cursor: pointer;
+	}
 	img {
 		display: block;
 		margin: 0 auto;
