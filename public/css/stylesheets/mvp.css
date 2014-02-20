@@ -2087,20 +2087,36 @@ html body {
   .play-footer .taglist {
     margin-left: 0px !important;
     margin-right: 0px !important; } }
-/* line 437, ../sass/mvp.scss */
+/* line 436, ../sass/mvp.scss */
+.playoverlay {
+  -webkit-transition: opacity 0.2s ease-out;
+  -moz-transition: opacity 0.2s ease-out;
+  -o-transition: opacity 0.2s ease-out;
+  transition: opacity 0.2s ease-out;
+  opacity: 0.7;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  margin: -25px 0 0 -25px; }
+  /* line 447, ../sass/mvp.scss */
+  .playoverlay:hover {
+    opacity: 1; }
+
+/* line 452, ../sass/mvp.scss */
 #slide-wrapper {
   width: 100%; }
-  /* line 439, ../sass/mvp.scss */
+  /* line 454, ../sass/mvp.scss */
   #slide-wrapper #news {
     float: left;
     padding-right: 15px;
     width: 21%;
     box-sizing: border-box;
     -moz-box-sizing: border-box; }
-  /* line 446, ../sass/mvp.scss */
+  /* line 461, ../sass/mvp.scss */
   #slide-wrapper #slider {
     float: right;
     width: 79%; }
-  /* line 450, ../sass/mvp.scss */
+  /* line 465, ../sass/mvp.scss */
   #slide-wrapper .container-inner {
     padding: 2px 0; }

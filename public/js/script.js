@@ -476,6 +476,9 @@ var RecommendHandler = {
           VideoCarouselHandler.addVideo($item, index );
     },
     playVideo: function($item) {
+
+        // console.log("PLAY VIDEO: ", $item);
+
         var $activeElement = PlaylistHandler.getActiveItem();
         PlaylistHandler.addToPlaylist($item);
         VideoCarouselHandler.addVideo($item, parseInt($activeElement.attr("data-slide-to")) );
