@@ -62,6 +62,8 @@ $(document).ready(function() {
     SplashHandler.init($('.svt234-Splash'));
     if (window.location.search.substring(1).indexOf("video") > -1) {
       SplashHandler.startVideo();
+    } else if (window.location.search.substring(1).indexOf("page") > -1) {
+      SplashHandler.startPage();
     } else {
       SplashHandler.show();
     }
@@ -173,6 +175,11 @@ var SplashHandler = {
       PlaylistHandler._updatePlaylist();
       if (this.autoStart)
         VideoCarouselHandler.startVideo();
+    },
+    startPage: function() {
+      $('.svt234Page').removeClass('splashHide hidden')[0].offsetWidth;
+      //$('.svt234-MainVideo').removeClass('splashHide')[0].offsetWidth;
+      PlaylistHandler._updatePlaylist();
     },
     startLoader: function() {
       var self = this;
