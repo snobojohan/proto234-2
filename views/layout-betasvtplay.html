@@ -48,7 +48,14 @@
     	{{{template_include "slideable-list.hbs"}}}
     </script>
     <script>
-    	alert("HELLO");
+    	$(function() {
+		  	// Handler for .ready() called.
+		  	$( "a" ).click(function(e) {
+				alert( "Tack. Fungerar inte i denna demo!" );
+				e.preventDefault();
+			});
+		});
+    	// alert("HELLO");
     </script>
   </body>
 </html>
