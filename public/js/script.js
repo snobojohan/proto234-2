@@ -48,7 +48,10 @@ function playVideo($obj){
 
 $(document).ready(function() {
 
-
+  $( ".jsAlert" ).click(function(e) {
+        alert( "Tack för klicket. Fungerar inte i denna demo!" );
+        e.preventDefault();
+  });
 
   DayChooser.init();
 

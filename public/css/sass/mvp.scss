@@ -18,9 +18,10 @@ html {
 		margin: 0 !important;
 		padding: 0 !important;
 		background: $body-bg !important;
+		font-family: 'Helvetica Neue', Helvetica-, Arial, sans-serif;
 	}
 	body {
-
+		font-family: 'Helvetica Neue', Helvetica-, Arial, sans-serif;
 		&.beta-body {
 			.play-videolist-group {
 				margin: 0 !important;
@@ -108,8 +109,9 @@ html {
 			color: #fff !important;
 		}
 		.play-h3, .play-h2, .mvp-h1 {
-			font-weight: 100;
-			font-size: 2em;
+			font-family: 'Helvetica Neue', Helvetica-, Arial, sans-serif;
+			font-weight: 200;
+			font-size: 20px;
 			color: $text-brown !important;
 		}
 		.playAlphabeticSkiplink.play-h3 {
