@@ -3,7 +3,9 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         watch: {
             options: {
-                livereload: true
+                livereload: {
+                    port: 1337
+                }
             },
             express: {
               files:  [ 'app.js', 'views/**/*.js', 'views/**/*.hbs' ],
