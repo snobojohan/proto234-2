@@ -1,6 +1,35 @@
 @import "compass";
 @import "theme-variables";
 
+////// TEST calculations //////
+
+
+@function getNewPercentage( $originalWidthPercent, $marginPixels, $viewWidthAssumedPixels ){
+
+	$itemWidthPixels: $viewWidthAssumedPixels * ( $originalWidthPercent / 100 );
+	$itemWidthIncMarginPixels: $itemWidthPixels + $marginPixels;
+	$notPinnedViewWidthPixels: $viewWidthAssumedPixels - $itemWidthIncMarginPixels;
+	// $newWidthPercent: percentage( $itemWidthPixels / $notPinnedViewWidthPixels);
+
+  	@return percentage( $itemWidthPixels / $notPinnedViewWidthPixels);
+}
+
+.testclass-18 {
+	width: getNewPercentage( 18, 15, 1280 );
+}
+.testclass-25 {
+	width: getNewPercentage( 25, 15, 1000 );
+}
+.testclass-30 {
+	width: getNewPercentage( 30, 10, 800 );
+}
+.testclass-40 {
+	width: getNewPercentage( 40, 10, 480 );
+}
+
+
+///////////////////////////////
+
 
 html, body {
 	height:100%;
